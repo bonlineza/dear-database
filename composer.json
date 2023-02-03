@@ -1,0 +1,44 @@
+{
+  "name": "bonlineza/dear-database",
+  "description": "Dear models and migrations",
+  "autoload": {
+    "psr-4": {
+      "Bonlineza\\DearDatabase\\": "src/",
+      "Bonlineza\\DearDatabase\\Tests\\": "tests/",
+      "Bonlineza\\DearDatabase\\Database\\Factories\\": "database/factories/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Phillip",
+      "email": "phillip@bonline.co.za"
+    }
+  ],
+  "require-dev": {
+    "orchestra/testbench": "^7.0",
+    "phpunit/phpunit": "^9.5",
+    "nunomaduro/larastan": "^2.4"
+  },
+  "scripts": {
+    "analyse": "vendor/bin/phpstan analyse --memory-limit=-1",
+    "baseline": "vendor/bin/phpstan analyse --memory-limit=-1 --generate-baseline",
+    "test": "vendor/bin/phpunit",
+    "test-f": "vendor/bin/phpunit --filter"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bonlineza\\DearDatabase\\Providers\\DearDatabaseServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "phpstan/extension-installer": true
+    }
+  },
+  "require": {
+    "ramsey/uuid": "^4.7"
+  }
+}
