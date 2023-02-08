@@ -1,0 +1,27 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP and composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+
+      - name: Install php dependencies
+        uses: "ramsey/composer-install@v2"
+
+      - name: Larastan
+        run: composer analyse
+
+      - name: PHP Unit
+        run: composer test
