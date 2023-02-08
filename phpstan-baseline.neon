@@ -1,0 +1,36 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\:\\:onlyNotDeleted\\(\\)\\.$#"
+			count: 1
+			path: src/Models/Customer.php
+
+		-
+			message: "#^Method Bonlineza\\\\DearDatabase\\\\Models\\\\Customer\\:\\:defaultContact\\(\\) should return Bonlineza\\\\DearDatabase\\\\Models\\\\Contact\\|null but returns Illuminate\\\\Database\\\\Eloquent\\\\Model\\|null\\.$#"
+			count: 1
+			path: src/Models/Customer.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\:\\:onlyNotDeleted\\(\\)\\.$#"
+			count: 1
+			path: src/Models/Supplier.php
+
+		-
+			message: "#^Method Bonlineza\\\\DearDatabase\\\\Models\\\\Supplier\\:\\:defaultContact\\(\\) should return Bonlineza\\\\DearDatabase\\\\Models\\\\Contact\\|null but returns Illuminate\\\\Database\\\\Eloquent\\\\Model\\|null\\.$#"
+			count: 1
+			path: src/Models/Supplier.php
+
+		-
+			message: "#^Method Bonlineza\\\\DearDatabase\\\\Models\\\\User\\:\\:defaultContact\\(\\) should return Bonlineza\\\\DearDatabase\\\\Models\\\\Contact\\|null but returns Illuminate\\\\Database\\\\Eloquent\\\\Model\\|null\\.$#"
+			count: 1
+			path: src/Models/User.php
+
+		-
+			message: "#^Method Bonlineza\\\\DearDatabase\\\\Models\\\\User\\:\\:defaultCustomerContact\\(\\) should return Bonlineza\\\\DearDatabase\\\\Models\\\\Contact\\|null but returns Illuminate\\\\Database\\\\Eloquent\\\\Model\\|null\\.$#"
+			count: 1
+			path: src/Models/User.php
+
+		-
+			message: "#^Method Bonlineza\\\\DearDatabase\\\\Models\\\\User\\:\\:defaultSupplierContact\\(\\) should return Bonlineza\\\\DearDatabase\\\\Models\\\\Contact\\|null but returns Illuminate\\\\Database\\\\Eloquent\\\\Model\\|null\\.$#"
+			count: 1
+			path: src/Models/User.php
