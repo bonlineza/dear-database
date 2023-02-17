@@ -37,8 +37,5 @@
       "pestphp/pest-plugin": true,
       "phpstan/extension-installer": true
     }
-  },
-  "require": {
-    "ramsey/uuid": "^4.7"
   }
 }
