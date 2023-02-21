@@ -43,9 +43,14 @@ class CustomerTest extends TestCase
 
         $address_guids = array_column($dear_customer['CustomerList'][0]['Addresses'], 'ID');
         foreach ($address_guids as $key => $address_guid) {
+            /** @var ContactAddress $db_address */
             $db_address = $customer->contactAddresses()->where('external_guid', $address_guid)->first();
             $dear_address = $dear_customer['CustomerList'][0]['Addresses'][$key];
             foreach (ContactAddress::getDearMapping() as $dear_key => $db_key) {
+                if ($db_key === 'type') {
+                    $this->assertEquals($dear_address[$dear_key], $db_address->$db_key->value);
+                    continue;
+                }
                 $this->assertEquals($dear_address[$dear_key], $db_address->$db_key);
             }
         }
@@ -83,9 +88,14 @@ class CustomerTest extends TestCase
 
         $address_guids = array_column($dear_customer['CustomerList'][0]['Addresses'], 'ID');
         foreach ($address_guids as $key => $address_guid) {
+            /** @var ContactAddress $db_address */
             $db_address = $customer->contactAddresses()->where('external_guid', $address_guid)->first();
             $dear_address = $dear_customer['CustomerList'][0]['Addresses'][$key];
             foreach (ContactAddress::getDearMapping() as $dear_key => $db_key) {
+                if ($db_key === 'type') {
+                    $this->assertEquals($dear_address[$dear_key], $db_address->$db_key->value);
+                    continue;
+                }
                 $this->assertEquals($dear_address[$dear_key], $db_address->$db_key);
             }
         }

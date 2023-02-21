@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $external_guid
+ * @property ContactAddressType $type
  */
 class ContactAddress extends Model
 {
