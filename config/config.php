@@ -7,5 +7,6 @@ return [
         'customer' => \Bonlineza\DearDatabase\Models\Customer::class,
         'contact' => \Bonlineza\DearDatabase\Models\Contact::class,
         'contact_address' => \Bonlineza\DearDatabase\Models\ContactAddress::class,
+        'additional_attribute' => \Bonlineza\DearDatabase\Models\AdditionalAttribute::class,
     ]
 ];
