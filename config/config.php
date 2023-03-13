@@ -15,5 +15,6 @@ return [
         'attachment_line' => \Bonlineza\DearDatabase\Models\AttachmentLine::class,
         'inventory_movement_line' => \Bonlineza\DearDatabase\Models\InventoryMovementLine::class,
         'address' => \Bonlineza\DearDatabase\Models\Address::class,
+        'purchase_shipping_address' => \Bonlineza\DearDatabase\Models\PurchaseShippingAddress::class,
     ]
 ];
