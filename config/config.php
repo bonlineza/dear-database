@@ -7,6 +7,7 @@ return [
         'customer' => \Bonlineza\DearDatabase\Models\Customer::class,
         'contact' => \Bonlineza\DearDatabase\Models\Contact::class,
         'contact_address' => \Bonlineza\DearDatabase\Models\ContactAddress::class,
+        'purchase' => \Bonlineza\DearDatabase\Models\Purchase::class,
         'purchase_order' => \Bonlineza\DearDatabase\Models\PurchaseOrder::class,
         'purchase_stock' => \Bonlineza\DearDatabase\Models\PurchaseStock::class,
         'purchase_invoice' => \Bonlineza\DearDatabase\Models\PurchaseInvoice::class,
