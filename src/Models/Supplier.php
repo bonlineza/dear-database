@@ -70,12 +70,6 @@ class Supplier extends DearClient
         return SupplierFactory::new();
     }
 
-    public function updateFromDear($supplier)
-    {
-        $this->createFromDear($supplier, $this);
-        return $this;
-    }
-
     public function defaultContact(): ?Contact
     {
         return $this->contacts()->where('default', true)->first();
