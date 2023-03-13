@@ -8,6 +8,7 @@ return [
         'contact' => \Bonlineza\DearDatabase\Models\Contact::class,
         'contact_address' => \Bonlineza\DearDatabase\Models\ContactAddress::class,
         'purchase_order' => \Bonlineza\DearDatabase\Models\PurchaseOrder::class,
+        'purchase_stock' => \Bonlineza\DearDatabase\Models\PurchaseStock::class,
         'purchase_invoice' => \Bonlineza\DearDatabase\Models\PurchaseInvoice::class,
         'purchase_credit_note' => \Bonlineza\DearDatabase\Models\PurchaseCreditNote::class,
         'purchase_manual_journal' => \Bonlineza\DearDatabase\Models\PurchaseManualJournal::class,
