@@ -10,6 +10,7 @@ return [
         'purchase_order' => \Bonlineza\DearDatabase\Models\PurchaseOrder::class,
         'purchase_invoice' => \Bonlineza\DearDatabase\Models\PurchaseInvoice::class,
         'purchase_credit_note' => \Bonlineza\DearDatabase\Models\PurchaseCreditNote::class,
+        'purchase_manual_journal' => \Bonlineza\DearDatabase\Models\PurchaseManualJournal::class,
         'additional_attribute' => \Bonlineza\DearDatabase\Models\AdditionalAttribute::class,
         'attachment_line' => \Bonlineza\DearDatabase\Models\AttachmentLine::class,
         'inventory_movement_line' => \Bonlineza\DearDatabase\Models\InventoryMovementLine::class,
