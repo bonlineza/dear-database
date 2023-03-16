@@ -15,27 +15,27 @@ return new class extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('external_guid');
-            $table->string('name');
-            $table->string('currency');
-            $table->string('payment_term');
-            $table->string('account_payable');
-            $table->string('tax_rule');
-            $table->string('status');
+            $table->uuid('external_guid');
+            $table->text('name');
+            $table->text('currency');
+            $table->text('payment_term');
+            $table->text('account_payable');
+            $table->text('tax_rule');
+            $table->text('status');
             $table->integer('discount');
-            $table->string('comments', 10000)->nullable();
-            $table->string('attribute_set')->nullable();
-            $table->string('additional_attribute_1')->nullable();
-            $table->string('additional_attribute_2')->nullable();
-            $table->string('additional_attribute_3')->nullable();
-            $table->string('additional_attribute_4')->nullable();
-            $table->string('additional_attribute_5')->nullable();
-            $table->string('additional_attribute_6')->nullable();
-            $table->string('additional_attribute_7')->nullable();
-            $table->string('additional_attribute_8')->nullable();
-            $table->string('additional_attribute_9')->nullable();
-            $table->string('additional_attribute_10')->nullable();
-            $table->string('last_modified_on');
+            $table->text('comments')->nullable();
+            $table->text('attribute_set')->nullable();
+            $table->text('additional_attribute_1')->nullable();
+            $table->text('additional_attribute_2')->nullable();
+            $table->text('additional_attribute_3')->nullable();
+            $table->text('additional_attribute_4')->nullable();
+            $table->text('additional_attribute_5')->nullable();
+            $table->text('additional_attribute_6')->nullable();
+            $table->text('additional_attribute_7')->nullable();
+            $table->text('additional_attribute_8')->nullable();
+            $table->text('additional_attribute_9')->nullable();
+            $table->text('additional_attribute_10')->nullable();
+            $table->text('last_modified_on');
 
             $table->timestamps();
         });

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->dateTime('invoice_date')->nullable();
             $table->dateTime('invoice_due_date')->nullable();
-            $table->string('invoice_number')->nullable();
-            $table->string('status');
+            $table->text('invoice_number')->nullable();
+            $table->text('status');
             $table->decimal('total_before_tax', 12, 4);
             $table->decimal('tax', 12, 4);
             $table->decimal('total', 12, 4);

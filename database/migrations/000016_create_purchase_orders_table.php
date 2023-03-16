@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('memo')->nullable();
-            $table->string('status');
+            $table->text('memo')->nullable();
+            $table->text('status');
             $table->decimal('total_before_tax', 12, 4);
             $table->decimal('tax', 12, 4);
             $table->decimal('total', 12, 4);
-
             $table->timestamps();
         });
     }

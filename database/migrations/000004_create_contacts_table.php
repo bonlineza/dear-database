@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('external_guid');
-            $table->string('name');
-            $table->string('phone')->nullable();
-            $table->string('fax')->nullable();
-            $table->string('email')->nullable();
-            $table->string('website')->nullable();
-            $table->string('comment')->nullable();
+            $table->uuid('external_guid');
+            $table->text('name');
+            $table->text('phone')->nullable();
+            $table->text('fax')->nullable();
+            $table->text('email')->nullable();
+            $table->text('website')->nullable();
+            $table->text('comment')->nullable();
             $table->boolean('default')->default(0);
             $table->boolean('include_in_email')->default(0);
 

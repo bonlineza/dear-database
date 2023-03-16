@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('purchase_shipping_addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('display_address_line1')->nullable();
-            $table->string('display_address_line2')->nullable();
-            $table->string('line1')->nullable();
-            $table->string('line2')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('postcode')->nullable();
-            $table->string('country')->nullable();
-            $table->string('company')->nullable();
-            $table->string('ship_to_other')->nullable();
+            $table->text('display_address_line1')->nullable();
+            $table->text('display_address_line2')->nullable();
+            $table->text('line1')->nullable();
+            $table->text('line2')->nullable();
+            $table->text('city')->nullable();
+            $table->text('state')->nullable();
+            $table->text('postcode')->nullable();
+            $table->text('country')->nullable();
+            $table->text('company')->nullable();
+            $table->boolean('ship_to_other')->nullable();
             $table->timestamps();
         });
     }

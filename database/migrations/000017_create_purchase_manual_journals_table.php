@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('purchase_manual_journals', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('status');
+            $table->text('status');
             $table->timestamps();
         });
     }

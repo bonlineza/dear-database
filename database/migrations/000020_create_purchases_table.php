@@ -15,29 +15,28 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('external_guid');
-            $table->string('supplier_guid');
-            $table->string('supplier', 256);
-            $table->string('contact')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('inventory_account');
+            $table->uuid('external_guid');
+            $table->uuid('supplier_guid');
+            $table->text('supplier');
+            $table->text('contact')->nullable();
+            $table->text('phone')->nullable();
+            $table->text('inventory_account');
             $table->boolean('blind_receipt');
-            $table->string('approach');
-            $table->string('base_currency', 3);
-            $table->string('supplier_currency', 3);
-            $table->string('tax_rule');
-            $table->string('tax_calculation');
-            $table->string('terms');
+            $table->text('approach');
+            $table->text('base_currency');
+            $table->text('supplier_currency');
+            $table->text('tax_rule');
+            $table->text('tax_calculation');
+            $table->text('terms');
             $table->dateTime('required_by')->nullable();
-            $table->string('location');
-            $table->string('note')->nullable();
-            $table->string('order_number', 256);
+            $table->text('location');
+            $table->text('note')->nullable();
+            $table->text('order_number');
             $table->dateTime('order_date');
-            $table->string('status');
-            $table->string('related_drop_ship_sale_task')->nullable();
-            $table->string('currency_rate');
+            $table->text('status');
+            $table->uuid('related_drop_ship_sale_task')->nullable();
+            $table->decimal('currency_rate');
             $table->dateTime('last_updated_date');
-            $table->dateTime('invoice_due_date')->nullable();
 
             $table->uuid('address_id')->nullable();
             $table->foreign('address_id')->references('id')->on('addresses');

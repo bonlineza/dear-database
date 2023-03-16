@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('contact_addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('external_guid');
-            $table->string('line1');
-            $table->string('line2')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('post_code')->nullable();
-            $table->string('country')->nullable();
-            $table->string('type');
-            $table->boolean('default_for_type')->default(0);
+            $table->uuid('external_guid');
+            $table->text('line1');
+            $table->text('line2')->nullable();
+            $table->text('city')->nullable();
+            $table->text('state')->nullable();
+            $table->text('post_code')->nullable();
+            $table->text('country')->nullable();
+            $table->text('type');
+            $table->boolean('default_for_type')->default(false);
 
             $table->timestamps();
         });

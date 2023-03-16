@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('attachment_lines', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('external_guid');
-            $table->string('content_type');
-            $table->string('file_name');
-            $table->string('download_url');
+            $table->uuid('external_guid');
+            $table->text('content_type');
+            $table->text('file_name');
+            $table->text('download_url');
             $table->timestamps();
         });
     }
