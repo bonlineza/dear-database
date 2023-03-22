@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('purchase_manual_journals', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->text('first_name');
-            $table->text('surname');
-            $table->text('email')->unique();
-            $table->text('password');
+            $table->text('status');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('purchase_manual_journals');
     }
 };

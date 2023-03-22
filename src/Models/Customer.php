@@ -77,12 +77,6 @@ class Customer extends DearClient
         return CustomerFactory::new();
     }
 
-    public function updateFromDear($customer)
-    {
-        $this->createFromDear($customer, $this);
-        return $this;
-    }
-
     public function defaultContact(): ?Contact
     {
         return $this->contacts()->where('default', true)->first();

@@ -13,18 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contact_addresses', function (Blueprint $table) {
+        Schema::create('inventory_movement_lines', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('external_guid');
-            $table->text('line1');
-            $table->text('line2')->nullable();
-            $table->text('city')->nullable();
-            $table->text('state')->nullable();
-            $table->text('post_code')->nullable();
-            $table->text('country')->nullable();
-            $table->text('type');
-            $table->boolean('default_for_type')->default(false);
-
+            $table->uuid('product_guid');
+            $table->dateTime('date');
+            $table->decimal('cogs');
             $table->timestamps();
         });
     }
@@ -36,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_addresses');
+        Schema::dropIfExists('inventory_movement_lines');
     }
 };

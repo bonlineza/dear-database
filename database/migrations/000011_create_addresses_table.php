@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contact_addresses', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('external_guid');
-            $table->text('line1');
+            $table->text('display_address_line1')->nullable();
+            $table->text('display_address_line2')->nullable();
+            $table->text('line1')->nullable();
             $table->text('line2')->nullable();
             $table->text('city')->nullable();
             $table->text('state')->nullable();
-            $table->text('post_code')->nullable();
+            $table->text('postcode')->nullable();
             $table->text('country')->nullable();
-            $table->text('type');
-            $table->boolean('default_for_type')->default(false);
-
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_addresses');
+        Schema::dropIfExists('addresses');
     }
 };

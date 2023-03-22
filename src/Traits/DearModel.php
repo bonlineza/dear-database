@@ -20,9 +20,15 @@ trait DearModel
         return [];
     }
 
-    protected static function getDearFieldTypes(): array
+    public static function getDearFieldTypes(): array
     {
         return [];
+    }
+
+    public function updateFromDear(array $fields): self
+    {
+        $this->createFromDear($fields, $this);
+        return $this;
     }
 
     /**
@@ -35,17 +41,20 @@ trait DearModel
         DB::beginTransaction();
         try {
             $mapped_data = self::mapFromDear($fields);
-            if (!empty($mapped_data)) {
-                if (!$object) {
-                    $object = self::create($mapped_data);
-                } else {
-                    $object->update($mapped_data);
-                }
-                if (!empty($object->getDearRelationships())) {
-                    $object->createFromDearWithRelationships($fields, $object);
-                }
-                DB::commit();
+
+            if (empty($mapped_data)) {
+                throw new \Exception(sprintf('Failed to map data from dear for class %s', self::class));
             }
+
+            if (!$object) {
+                $object = self::create($mapped_data);
+            } else {
+                $object->update($mapped_data);
+            }
+            if (!empty($object->getDearRelationships())) {
+                $object->createFromDearWithRelationships($fields, $object);
+            }
+            DB::commit();
         } catch (Throwable $exception) {
             DB::rollback();
             throw $exception;
@@ -79,6 +88,10 @@ trait DearModel
                 if (!isset($dear_object[$value['dear_key']])) {
                     continue;
                 }
+                if (!isset($value['model'])) {
+                    throw new \Exception('Model must be a valid class string');
+                }
+
                 $model = $value['model'];
                 $data = null;
                 $column = null;
@@ -131,7 +144,7 @@ trait DearModel
         return $dear_db_object->refresh();
     }
 
-    public static function mapFromDear($fields)
+    public static function mapFromDear($fields): array
     {
         $mapped_data = [];
         foreach ($fields as $key => $item) {

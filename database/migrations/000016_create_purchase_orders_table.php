@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('purchase_orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->text('first_name');
-            $table->text('surname');
-            $table->text('email')->unique();
-            $table->text('password');
+            $table->text('memo')->nullable();
+            $table->text('status');
+            $table->decimal('total_before_tax', 12, 4);
+            $table->decimal('tax', 12, 4);
+            $table->decimal('total', 12, 4);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('purchase_orders');
     }
 };
