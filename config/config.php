@@ -19,8 +19,10 @@ return [
         'address' => \Bonlineza\DearDatabase\Models\Address::class,
         'purchase_shipping_address' => \Bonlineza\DearDatabase\Models\PurchaseShippingAddress::class,
         'purchase_order_line' => \Bonlineza\DearDatabase\Models\PurchaseOrderLine::class,
+        'purchase_invoice_line' => \Bonlineza\DearDatabase\Models\PurchaseInvoiceLine::class,
         'purchase_payment_line' => \Bonlineza\DearDatabase\Models\PurchasePaymentLine::class,
         'purchase_additional_charge' => \Bonlineza\DearDatabase\Models\PurchaseAdditionalCharge::class,
+        'purchase_invoice_additional_charge' => \Bonlineza\DearDatabase\Models\PurchaseInvoiceAdditionalCharge::class,
         'purchase_stock_line' => \Bonlineza\DearDatabase\Models\PurchaseStockLine::class,
     ]
 ];

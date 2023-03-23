@@ -58,6 +58,15 @@ class PurchaseTest extends TestCase
         // Purchase Invoice
         $this->assertPurchaseInvoice($dear_purchase, $purchase);
 
+        // Purchase Invoice Lines
+        $this->assertPurchaseInvoiceLines($dear_purchase, $purchase);
+
+        // Purchase Invoice Additional Charges
+        $this->assertPurchaseInvoiceAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Invoice Payment Lines
+        $this->assertPurchaseInvoicePaymentLines($dear_purchase, $purchase);
+
         // Purchase Credit Note
         $this->assertPurchaseCreditNote($dear_purchase, $purchase);
 
@@ -120,6 +129,15 @@ class PurchaseTest extends TestCase
 
         // Purchase Invoice
         $this->assertPurchaseInvoice($dear_purchase, $purchase);
+
+        // Purchase Invoice Lines
+        $this->assertPurchaseInvoiceLines($dear_purchase, $purchase);
+
+        // Purchase Invoice Additional Charges
+        $this->assertPurchaseInvoiceAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Invoice Payment Lines
+        $this->assertPurchaseInvoicePaymentLines($dear_purchase, $purchase);
 
         // Purchase Credit Note
         $this->assertPurchaseCreditNote($dear_purchase, $purchase);

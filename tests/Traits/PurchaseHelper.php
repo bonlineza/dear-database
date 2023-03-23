@@ -10,6 +10,8 @@ use Bonlineza\DearDatabase\Models\Purchase;
 use Bonlineza\DearDatabase\Models\PurchaseAdditionalCharge;
 use Bonlineza\DearDatabase\Models\PurchaseCreditNote;
 use Bonlineza\DearDatabase\Models\PurchaseInvoice;
+use Bonlineza\DearDatabase\Models\PurchaseInvoiceAdditionalCharge;
+use Bonlineza\DearDatabase\Models\PurchaseInvoiceLine;
 use Bonlineza\DearDatabase\Models\PurchaseManualJournal;
 use Bonlineza\DearDatabase\Models\PurchaseOrder;
 use Bonlineza\DearDatabase\Models\PurchaseOrderLine;
@@ -164,6 +166,59 @@ trait PurchaseHelper
         $dear_invoice = $dear_purchase['Invoice'];
         foreach (PurchaseInvoice::getDearMapping() as $dear_key => $db_key) {
             $this->assertEquals($dear_invoice[$dear_key], $db_invoice->$db_key);
+        }
+    }
+
+    private function assertPurchaseInvoiceLines($dear_purchase, $db_purchase): void
+    {
+        $invoice_line_guids = array_column($dear_purchase['Invoice']['Lines'], 'ProductID');
+        foreach ($invoice_line_guids as $key => $invoice_line_guid) {
+            $db_invoice_line = $db_purchase->purchaseInvoice->purchaseInvoiceLines()->where('product_guid', $invoice_line_guid)->first();
+            $dear_invoice_line = $dear_purchase['Invoice']['Lines'][$key];
+            foreach (PurchaseInvoiceLine::getDearMapping() as $dear_key => $db_key) {
+                $this->assertEquals($dear_invoice_line[$dear_key], $db_invoice_line->$db_key);
+            }
+        }
+    }
+
+    private function assertPurchaseInvoiceAdditionalCharges($dear_purchase, Purchase $db_purchase): void
+    {
+        $mapped_dear_invoice_additional_charges = [];
+        foreach ($dear_purchase['Invoice']['AdditionalCharges'] as $key => $dear_invoice_additional_charge) {
+            foreach (PurchaseInvoiceAdditionalCharge::getDearMapping() as $dear_key => $db_key) {
+                $mapped_dear_invoice_additional_charges[$key][$db_key] = $dear_invoice_additional_charge[$dear_key];
+            }
+        }
+
+        $mapped_db_invoice_additional_charges = [];
+        /** @var PurchaseInvoice $db_purchase_invoice */
+        $db_purchase_invoice = $db_purchase->purchaseInvoice;
+        foreach ($db_purchase_invoice->purchaseInvoiceAdditionalCharges as $key => $db_invoice_additional_charge) {
+            foreach (PurchaseInvoiceAdditionalCharge::getDearMapping() as $db_key) {
+                $mapped_db_invoice_additional_charges[$key][$db_key] = $db_invoice_additional_charge[$db_key];
+            }
+        }
+
+        $this->assertTrue($mapped_db_invoice_additional_charges == $mapped_dear_invoice_additional_charges);
+    }
+
+    private function assertPurchaseInvoicePaymentLines($dear_purchase, $db_purchase): void
+    {
+        $date_fields = array_filter(PurchasePaymentLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+        $payment_line_guids = array_column($dear_purchase['Invoice']['Payments'], 'ID');
+        foreach ($payment_line_guids as $key => $payment_line_guid) {
+            $db_payment_line = $db_purchase->purchaseInvoice->purchasePaymentLines()->where('external_guid', $payment_line_guid)->first();
+            $dear_payment_line = $dear_purchase['Invoice']['Payments'][$key];
+            foreach (PurchasePaymentLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_payment_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_payment_line[$dear_key])->format('Y-m-d H:i:s');
+                    $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_payment_line->$db_key));
+                    continue;
+                }
+                $this->assertEquals($dear_payment_line[$dear_key], $db_payment_line->$db_key);
+            }
         }
     }
 
