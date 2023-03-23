@@ -40,6 +40,15 @@ class PurchaseTest extends TestCase
         // Purchase Order
         $this->assertPurchaseOrder($dear_purchase, $purchase);
 
+        // Purchase Order Lines
+        $this->assertPurchaseOrderLines($dear_purchase, $purchase);
+
+        // Purchase Additional Charges
+        $this->assertPurchaseAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Pre Payment Lines
+        $this->assertPurchasePrePaymentLines($dear_purchase, $purchase);
+
         // Purchase Stock
         $this->assertPurchaseStock($dear_purchase, $purchase);
 
@@ -90,6 +99,15 @@ class PurchaseTest extends TestCase
 
         // Purchase Order
         $this->assertPurchaseOrder($dear_purchase, $purchase);
+
+        // Purchase Order Lines
+        $this->assertPurchaseOrderLines($dear_purchase, $purchase);
+
+        // Purchase Additional Charges
+        $this->assertPurchaseAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Pre Payment Lines
+        $this->assertPurchasePrePaymentLines($dear_purchase, $purchase);
 
         // Purchase Stock
         $this->assertPurchaseStock($dear_purchase, $purchase);
