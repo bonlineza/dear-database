@@ -70,6 +70,18 @@ class PurchaseTest extends TestCase
         // Purchase Credit Note
         $this->assertPurchaseCreditNote($dear_purchase, $purchase);
 
+        // Purchase Credit Note Invoice Lines
+        $this->assertPurchaseCreditNoteInvoiceLines($dear_purchase, $purchase);
+
+        // Purchase Credit Note Invoice Additional Charges
+        $this->assertPurchaseCreditNoteInvoiceAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Credit Note Payment Lines
+        $this->assertPurchaseCreditNotePaymentLines($dear_purchase, $purchase);
+
+        // Purchase Credit Note Unstock Lines
+        $this->assertPurchaseCreditNoteUnstockLines($dear_purchase, $purchase);
+
         // Purchase Manual Journal
         $this->assertPurchaseManualJournal($dear_purchase, $purchase);
 
@@ -141,6 +153,18 @@ class PurchaseTest extends TestCase
 
         // Purchase Credit Note
         $this->assertPurchaseCreditNote($dear_purchase, $purchase);
+
+        // Purchase Credit Note Invoice Lines
+        $this->assertPurchaseCreditNoteInvoiceLines($dear_purchase, $purchase);
+
+        // Purchase Credit Note Invoice Additional Charges
+        $this->assertPurchaseCreditNoteInvoiceAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Credit Note Payment Lines
+        $this->assertPurchaseCreditNotePaymentLines($dear_purchase, $purchase);
+
+        // Purchase Credit Note Unstock Lines
+        $this->assertPurchaseCreditNoteUnstockLines($dear_purchase, $purchase);
 
         // Purchase Manual Journal
         $this->assertPurchaseManualJournal($dear_purchase, $purchase);

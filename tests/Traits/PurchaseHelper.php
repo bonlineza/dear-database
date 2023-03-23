@@ -19,6 +19,7 @@ use Bonlineza\DearDatabase\Models\PurchasePaymentLine;
 use Bonlineza\DearDatabase\Models\PurchaseShippingAddress;
 use Bonlineza\DearDatabase\Models\PurchaseStock;
 use Bonlineza\DearDatabase\Models\PurchaseStockLine;
+use Bonlineza\DearDatabase\Models\PurchaseUnstockLine;
 use Illuminate\Support\Carbon;
 
 trait PurchaseHelper
@@ -228,6 +229,71 @@ trait PurchaseHelper
         $dear_credit_note = $dear_purchase['CreditNote'];
         foreach (PurchaseCreditNote::getDearMapping() as $dear_key => $db_key) {
             $this->assertEquals($dear_credit_note[$dear_key], $db_credit_note->$db_key);
+        }
+    }
+
+    private function assertPurchaseCreditNoteInvoiceLines($dear_purchase, $db_purchase): void
+    {
+        $invoice_line_guids = array_column($dear_purchase['CreditNote']['Lines'], 'ProductID');
+        foreach ($invoice_line_guids as $key => $invoice_line_guid) {
+            $db_invoice_line = $db_purchase->purchaseCreditNote->purchaseInvoiceLines()->where('product_guid', $invoice_line_guid)->first();
+            $dear_invoice_line = $dear_purchase['CreditNote']['Lines'][$key];
+            foreach (PurchaseInvoiceLine::getDearMapping() as $dear_key => $db_key) {
+                $this->assertEquals($dear_invoice_line[$dear_key], $db_invoice_line->$db_key);
+            }
+        }
+    }
+
+    private function assertPurchaseCreditNoteInvoiceAdditionalCharges($dear_purchase, $db_purchase): void
+    {
+        $mapped_dear_credit_note_additional_charges = [];
+        foreach ($dear_purchase['CreditNote']['AdditionalCharges'] as $key => $dear_credit_note_additional_charge) {
+            foreach (PurchaseInvoiceAdditionalCharge::getDearMapping() as $dear_key => $db_key) {
+                $mapped_dear_credit_note_additional_charges[$key][$db_key] = $dear_credit_note_additional_charge[$dear_key];
+            }
+        }
+
+        $mapped_db_credit_note_additional_charges = [];
+        /** @var PurchaseCreditNote $db_purchase_credit_note */
+        $db_purchase_credit_note = $db_purchase->purchaseCreditNote;
+        foreach ($db_purchase_credit_note->purchaseInvoiceAdditionalCharges as $key => $db_credit_note_additional_charge) {
+            foreach (PurchaseInvoiceAdditionalCharge::getDearMapping() as $db_key) {
+                $mapped_db_credit_note_additional_charges[$key][$db_key] = $db_credit_note_additional_charge[$db_key];
+            }
+        }
+
+        $this->assertTrue($mapped_dear_credit_note_additional_charges == $mapped_db_credit_note_additional_charges);
+    }
+
+    private function assertPurchaseCreditNotePaymentLines($dear_purchase, $db_purchase): void
+    {
+        $date_fields = array_filter(PurchasePaymentLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+        $payment_line_guids = array_column($dear_purchase['CreditNote']['Refunds'], 'ID');
+        foreach ($payment_line_guids as $key => $payment_line_guid) {
+            $db_payment_line = $db_purchase->purchaseCreditNote->purchasePaymentLines()->where('external_guid', $payment_line_guid)->first();
+            $dear_payment_line = $dear_purchase['CreditNote']['Refunds'][$key];
+            foreach (PurchasePaymentLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_payment_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_payment_line[$dear_key])->format('Y-m-d H:i:s');
+                    $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_payment_line->$db_key));
+                    continue;
+                }
+                $this->assertEquals($dear_payment_line[$dear_key], $db_payment_line->$db_key);
+            }
+        }
+    }
+
+    private function assertPurchaseCreditNoteUnstockLines($dear_purchase, $db_purchase): void
+    {
+        $unstock_line_guids = array_column($dear_purchase['CreditNote']['Unstock'], 'CardID');
+        foreach ($unstock_line_guids as $key => $unstock_line_guid) {
+            $db_unstock_line = $db_purchase->purchaseCreditNote->purchaseUnstockLines()->where('external_guid', $unstock_line_guid)->first();
+            $dear_unstock_line = $dear_purchase['CreditNote']['Unstock'][$key];
+            foreach (PurchaseUnstockLine::getDearMapping() as $dear_key => $db_key) {
+                $this->assertEquals($dear_unstock_line[$dear_key], $db_unstock_line->$db_key);
+            }
         }
     }
 

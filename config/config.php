@@ -24,5 +24,6 @@ return [
         'purchase_additional_charge' => \Bonlineza\DearDatabase\Models\PurchaseAdditionalCharge::class,
         'purchase_invoice_additional_charge' => \Bonlineza\DearDatabase\Models\PurchaseInvoiceAdditionalCharge::class,
         'purchase_stock_line' => \Bonlineza\DearDatabase\Models\PurchaseStockLine::class,
+        'purchase_unstock_line' => \Bonlineza\DearDatabase\Models\PurchaseUnstockLine::class,
     ]
 ];
