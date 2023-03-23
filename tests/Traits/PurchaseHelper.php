@@ -16,6 +16,7 @@ use Bonlineza\DearDatabase\Models\PurchaseOrderLine;
 use Bonlineza\DearDatabase\Models\PurchasePaymentLine;
 use Bonlineza\DearDatabase\Models\PurchaseShippingAddress;
 use Bonlineza\DearDatabase\Models\PurchaseStock;
+use Bonlineza\DearDatabase\Models\PurchaseStockLine;
 use Illuminate\Support\Carbon;
 
 trait PurchaseHelper
@@ -120,6 +121,41 @@ trait PurchaseHelper
         foreach (PurchaseStock::getDearMapping() as $dear_key => $db_key) {
             $this->assertEquals($dear_stock[$dear_key], $db_stock->$db_key);
         }
+    }
+
+    private function assertPurchaseStockLines($dear_purchase, Purchase $db_purchase): void
+    {
+        $date_fields = array_filter(PurchaseStockLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+
+        $mapped_dear_stock_lines = [];
+        foreach ($dear_purchase['StockReceived']['Lines'] as $key => $dear_stock_line) {
+            foreach (PurchaseStockLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_stock_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_stock_line[$dear_key])->format('Y-m-d H:i:s');
+                    $mapped_dear_stock_lines[$key][$db_key] = $formatted_date;
+                    continue;
+                }
+                $mapped_dear_stock_lines[$key][$db_key] = $dear_stock_line[$dear_key];
+            }
+        }
+
+        $mapped_db_stock_lines = [];
+        /** @var PurchaseStock $db_purchase_stock */
+        $db_purchase_stock = $db_purchase->purchaseStock;
+        foreach ($db_purchase_stock->purchaseStockLines as $key => $db_stock_line) {
+            foreach (PurchaseStockLine::getDearMapping() as $db_key) {
+                if ($db_stock_line[$db_key] instanceof Carbon) {
+                    $formatted_date = $db_stock_line[$db_key]->format('Y-m-d H:i:s');
+                    $mapped_db_stock_lines[$key][$db_key] = $formatted_date;
+                    continue;
+                }
+                $mapped_db_stock_lines[$key][$db_key] = $db_stock_line[$db_key];
+            }
+        }
+
+        $this->assertTrue($mapped_db_stock_lines == $mapped_dear_stock_lines);
     }
 
     private function assertPurchaseInvoice($dear_purchase, $db_purchase): void

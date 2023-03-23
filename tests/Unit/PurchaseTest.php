@@ -52,6 +52,9 @@ class PurchaseTest extends TestCase
         // Purchase Stock
         $this->assertPurchaseStock($dear_purchase, $purchase);
 
+        // Purchase Stock Lines
+        $this->assertPurchaseStockLines($dear_purchase, $purchase);
+
         // Purchase Invoice
         $this->assertPurchaseInvoice($dear_purchase, $purchase);
 
@@ -111,6 +114,9 @@ class PurchaseTest extends TestCase
 
         // Purchase Stock
         $this->assertPurchaseStock($dear_purchase, $purchase);
+
+        // Purchase Stock Lines
+        $this->assertPurchaseStockLines($dear_purchase, $purchase);
 
         // Purchase Invoice
         $this->assertPurchaseInvoice($dear_purchase, $purchase);

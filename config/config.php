@@ -21,5 +21,6 @@ return [
         'purchase_order_line' => \Bonlineza\DearDatabase\Models\PurchaseOrderLine::class,
         'purchase_payment_line' => \Bonlineza\DearDatabase\Models\PurchasePaymentLine::class,
         'purchase_additional_charge' => \Bonlineza\DearDatabase\Models\PurchaseAdditionalCharge::class,
+        'purchase_stock_line' => \Bonlineza\DearDatabase\Models\PurchaseStockLine::class,
     ]
 ];
