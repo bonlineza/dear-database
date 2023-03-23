@@ -13,6 +13,7 @@ use Bonlineza\DearDatabase\Models\PurchaseInvoice;
 use Bonlineza\DearDatabase\Models\PurchaseInvoiceAdditionalCharge;
 use Bonlineza\DearDatabase\Models\PurchaseInvoiceLine;
 use Bonlineza\DearDatabase\Models\PurchaseManualJournal;
+use Bonlineza\DearDatabase\Models\PurchaseManualJournalLine;
 use Bonlineza\DearDatabase\Models\PurchaseOrder;
 use Bonlineza\DearDatabase\Models\PurchaseOrderLine;
 use Bonlineza\DearDatabase\Models\PurchasePaymentLine;
@@ -305,6 +306,28 @@ trait PurchaseHelper
             $this->assertEquals($dear_manual_journal[$dear_key], $db_manual_journal->$db_key);
         }
     }
+
+    private function assertPurchaseManualJournalLines($dear_purchase, $db_purchase): void
+    {
+        $mapped_dear_manual_journal_lines = [];
+        foreach ($dear_purchase['ManualJournals']['Lines'] as $key => $dear_manual_journal_line) {
+            foreach (PurchaseManualJournalLine::getDearMapping() as $dear_key => $db_key) {
+                $mapped_dear_manual_journal_lines[$key][$db_key] = $dear_manual_journal_line[$dear_key];
+            }
+        }
+
+        $mapped_db_manual_journal_lines = [];
+        /** @var PurchaseManualJournal $db_purchase_manual_journal */
+        $db_purchase_manual_journal = $db_purchase->purchaseManualJournal;
+        foreach ($db_purchase_manual_journal->purchaseManualJournalLines as $key => $db_manual_journal_line) {
+            foreach (PurchaseManualJournalLine::getDearMapping() as $db_key) {
+                $mapped_db_manual_journal_lines[$key][$db_key] = $db_manual_journal_line[$db_key];
+            }
+        }
+
+        $this->assertTrue($mapped_dear_manual_journal_lines == $mapped_db_manual_journal_lines);
+    }
+
 
     private function assertPurchaseAdditionalAttribute($dear_purchase, $db_purchase): void
     {

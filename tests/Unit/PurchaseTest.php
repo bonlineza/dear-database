@@ -85,6 +85,9 @@ class PurchaseTest extends TestCase
         // Purchase Manual Journal
         $this->assertPurchaseManualJournal($dear_purchase, $purchase);
 
+        // Purchase Manual Journal Lines
+        $this->assertPurchaseManualJournalLines($dear_purchase, $purchase);
+
         // Purchase Additional Attribute
         $this->assertPurchaseAdditionalAttribute($dear_purchase, $purchase);
 
@@ -168,6 +171,9 @@ class PurchaseTest extends TestCase
 
         // Purchase Manual Journal
         $this->assertPurchaseManualJournal($dear_purchase, $purchase);
+
+        // Purchase Manual Journal Lines
+        $this->assertPurchaseManualJournalLines($dear_purchase, $purchase);
 
         // Purchase Additional Attribute
         $this->assertPurchaseAdditionalAttribute($dear_purchase, $purchase);
