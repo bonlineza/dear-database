@@ -40,17 +40,53 @@ class PurchaseTest extends TestCase
         // Purchase Order
         $this->assertPurchaseOrder($dear_purchase, $purchase);
 
+        // Purchase Order Lines
+        $this->assertPurchaseOrderLines($dear_purchase, $purchase);
+
+        // Purchase Additional Charges
+        $this->assertPurchaseAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Pre Payment Lines
+        $this->assertPurchasePrePaymentLines($dear_purchase, $purchase);
+
         // Purchase Stock
         $this->assertPurchaseStock($dear_purchase, $purchase);
+
+        // Purchase Stock Lines
+        $this->assertPurchaseStockLines($dear_purchase, $purchase);
 
         // Purchase Invoice
         $this->assertPurchaseInvoice($dear_purchase, $purchase);
 
+        // Purchase Invoice Lines
+        $this->assertPurchaseInvoiceLines($dear_purchase, $purchase);
+
+        // Purchase Invoice Additional Charges
+        $this->assertPurchaseInvoiceAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Invoice Payment Lines
+        $this->assertPurchaseInvoicePaymentLines($dear_purchase, $purchase);
+
         // Purchase Credit Note
         $this->assertPurchaseCreditNote($dear_purchase, $purchase);
 
+        // Purchase Credit Note Invoice Lines
+        $this->assertPurchaseCreditNoteInvoiceLines($dear_purchase, $purchase);
+
+        // Purchase Credit Note Invoice Additional Charges
+        $this->assertPurchaseCreditNoteInvoiceAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Credit Note Payment Lines
+        $this->assertPurchaseCreditNotePaymentLines($dear_purchase, $purchase);
+
+        // Purchase Credit Note Unstock Lines
+        $this->assertPurchaseCreditNoteUnstockLines($dear_purchase, $purchase);
+
         // Purchase Manual Journal
         $this->assertPurchaseManualJournal($dear_purchase, $purchase);
+
+        // Purchase Manual Journal Lines
+        $this->assertPurchaseManualJournalLines($dear_purchase, $purchase);
 
         // Purchase Additional Attribute
         $this->assertPurchaseAdditionalAttribute($dear_purchase, $purchase);
@@ -91,17 +127,53 @@ class PurchaseTest extends TestCase
         // Purchase Order
         $this->assertPurchaseOrder($dear_purchase, $purchase);
 
+        // Purchase Order Lines
+        $this->assertPurchaseOrderLines($dear_purchase, $purchase);
+
+        // Purchase Additional Charges
+        $this->assertPurchaseAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Pre Payment Lines
+        $this->assertPurchasePrePaymentLines($dear_purchase, $purchase);
+
         // Purchase Stock
         $this->assertPurchaseStock($dear_purchase, $purchase);
+
+        // Purchase Stock Lines
+        $this->assertPurchaseStockLines($dear_purchase, $purchase);
 
         // Purchase Invoice
         $this->assertPurchaseInvoice($dear_purchase, $purchase);
 
+        // Purchase Invoice Lines
+        $this->assertPurchaseInvoiceLines($dear_purchase, $purchase);
+
+        // Purchase Invoice Additional Charges
+        $this->assertPurchaseInvoiceAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Invoice Payment Lines
+        $this->assertPurchaseInvoicePaymentLines($dear_purchase, $purchase);
+
         // Purchase Credit Note
         $this->assertPurchaseCreditNote($dear_purchase, $purchase);
 
+        // Purchase Credit Note Invoice Lines
+        $this->assertPurchaseCreditNoteInvoiceLines($dear_purchase, $purchase);
+
+        // Purchase Credit Note Invoice Additional Charges
+        $this->assertPurchaseCreditNoteInvoiceAdditionalCharges($dear_purchase, $purchase);
+
+        // Purchase Credit Note Payment Lines
+        $this->assertPurchaseCreditNotePaymentLines($dear_purchase, $purchase);
+
+        // Purchase Credit Note Unstock Lines
+        $this->assertPurchaseCreditNoteUnstockLines($dear_purchase, $purchase);
+
         // Purchase Manual Journal
         $this->assertPurchaseManualJournal($dear_purchase, $purchase);
+
+        // Purchase Manual Journal Lines
+        $this->assertPurchaseManualJournalLines($dear_purchase, $purchase);
 
         // Purchase Additional Attribute
         $this->assertPurchaseAdditionalAttribute($dear_purchase, $purchase);

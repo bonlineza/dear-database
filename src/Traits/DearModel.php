@@ -89,7 +89,7 @@ trait DearModel
                     continue;
                 }
                 if (!isset($value['model'])) {
-                    throw new \Exception('Model must be a valid class string');
+                    throw new \Exception(sprintf('Dear relationship model for table %s must be a valid class string', $value['table']));
                 }
 
                 $model = $value['model'];
