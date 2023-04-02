@@ -30,5 +30,6 @@ return [
         'sale_order' => \Bonlineza\DearDatabase\Models\SaleOrder::class,
         'sale_shipping_address' => \Bonlineza\DearDatabase\Models\SaleShippingAddress::class,
         'sale_manual_journal' => \Bonlineza\DearDatabase\Models\SaleManualJournal::class,
+        'sale_fulfilment' => \Bonlineza\DearDatabase\Models\SaleFulfilment::class,
     ]
 ];
