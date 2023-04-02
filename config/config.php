@@ -26,5 +26,6 @@ return [
         'purchase_stock_line' => \Bonlineza\DearDatabase\Models\PurchaseStockLine::class,
         'purchase_unstock_line' => \Bonlineza\DearDatabase\Models\PurchaseUnstockLine::class,
         'purchase_manual_journal_line' => \Bonlineza\DearDatabase\Models\PurchaseManualJournalLine::class,
+        'sale_shipping_address' => \Bonlineza\DearDatabase\Models\SaleShippingAddress::class,
     ]
 ];
