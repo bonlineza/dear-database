@@ -1,0 +1,393 @@
+{
+  "ID": "aad39fa7-2ba6-4887-abf9-1e3ac6eae510",
+  "Customer": "Sabeeha Sabi",
+  "CustomerID": "e524da76-2735-492b-aea7-c80ad6b33d5d",
+  "Contact": "",
+  "Phone": "",
+  "Email": "sabeeha.sabi5@gmail.com",
+  "DefaultAccount": "200",
+  "SkipQuote": false,
+  "BillingAddress": {
+    "DisplayAddressLine1": "",
+    "DisplayAddressLine2": "",
+    "Line1": null,
+    "Line2": null,
+    "City": null,
+    "State": null,
+    "Postcode": null,
+    "Country": null
+  },
+  "ShippingAddress": {
+    "DisplayAddressLine1": "",
+    "DisplayAddressLine2": "",
+    "Line1": "",
+    "Line2": "",
+    "City": "",
+    "State": "",
+    "Postcode": "",
+    "Country": "",
+    "Company": "Sabeeha Sabi",
+    "Contact": "",
+    "ShipToOther": false
+  },
+  "ShippingNotes": null,
+  "BaseCurrency": "ZAR",
+  "CustomerCurrency": "ZAR",
+  "TaxRule": "No VAT",
+  "TaxCalculation": "Exclusive",
+  "Terms": "30 days",
+  "PriceTier": "Sales Price",
+  "ShipBy": null,
+  "Location": "Head Office, Cape Town",
+  "SaleOrderDate": "2017-01-27T00:00:00Z",
+  "LastModifiedOn": "2018-05-21T11:21:38.02Z",
+  "Note": "",
+  "CustomerReference": "000178",
+  "COGSAmount": 4500.0,
+  "Status": "COMPLETED",
+  "CombinedPickingStatus": "PICKED",
+  "CombinedPackingStatus": "PACKED",
+  "CombinedShippingStatus": "SHIPPED",
+  "FulFilmentStatus": "FULFILLED",
+  "CombinedInvoiceStatus": "INVOICED",
+  "CombinedPaymentStatus": "PAID",
+  "CombinedTrackingNumbers": "",
+  "Carrier": " ",
+  "CurrencyRate": 1.0,
+  "SalesRepresentative": "Florian Engi",
+  "ServiceOnly": false,
+  "Type": "Simple Sale",
+  "SourceChannel": "",
+  "Quote": {
+    "Memo": "",
+    "Status": "AUTHORISED",
+    "Prepayments": [
+      {
+        "ID": "81be9061-91e6-4d60-af66-9b366abd1198",
+        "Reference": "sabeeha",
+        "Amount": 3000.0,
+        "DatePaid": "2017-01-28T00:00:00Z",
+        "Account": "201",
+        "CurrencyRate": 1.0,
+        "DateCreated": "2017-01-30T12:42:16.2425576Z"
+      }
+    ],
+    "Lines": [
+      {
+        "ProductID": "8c181cb4-1741-43ee-8f7e-d771225914f2",
+        "SKU": "BAGLV165",
+        "Name": "LOUIS VUITTON Damier Ebene Neverfull MM",
+        "Quantity": 1.0,
+        "Price": 11500.0,
+        "Discount": 0.0,
+        "Tax": 0.0,
+        "AverageCost": 4500.0,
+        "TaxRule": "No VAT",
+        "Comment": "",
+        "Total": 11500.0,
+        "ProductLength": 0.0,
+        "ProductWidth": 0.0,
+        "ProductHeight": 0.0,
+        "ProductWeight": 0.0,
+        "WeightUnits": null,
+        "DimensionsUnits": null,
+        "ProductCustomField1": null,
+        "ProductCustomField2": null,
+        "ProductCustomField3": null,
+        "ProductCustomField4": null,
+        "ProductCustomField5": null,
+        "ProductCustomField6": null,
+        "ProductCustomField7": null,
+        "ProductCustomField8": null,
+        "ProductCustomField9": null,
+        "ProductCustomField10": null
+      }
+    ],
+    "AdditionalCharges": [],
+    "TotalBeforeTax": 11500.0,
+    "Tax": 0.0,
+    "Total": 11500.0
+  },
+  "Order": {
+    "SaleOrderNumber": "SO-00001",
+    "Memo": "",
+    "Status": "FULFILLED",
+    "Lines": [
+      {
+        "ProductID": "8c181cb4-1741-43ee-8f7e-d771225914f2",
+        "SKU": "BAGLV165",
+        "Name": "LOUIS VUITTON Damier Ebene Neverfull MM",
+        "Quantity": 1.0,
+        "Price": 11500.0,
+        "Discount": 0.0,
+        "Tax": 0.0,
+        "AverageCost": 4500.0,
+        "TaxRule": "No VAT",
+        "Comment": "",
+        "DropShip": false,
+        "BackorderQuantity": 0.0,
+        "Total": 11500.0,
+        "ProductLength": 0.0,
+        "ProductWidth": 0.0,
+        "ProductHeight": 0.0,
+        "ProductWeight": 0.0,
+        "WeightUnits": null,
+        "DimensionsUnits": null,
+        "ProductCustomField1": null,
+        "ProductCustomField2": null,
+        "ProductCustomField3": null,
+        "ProductCustomField4": null,
+        "ProductCustomField5": null,
+        "ProductCustomField6": null,
+        "ProductCustomField7": null,
+        "ProductCustomField8": null,
+        "ProductCustomField9": null,
+        "ProductCustomField10": null
+      }
+    ],
+    "AdditionalCharges": [],
+    "TotalBeforeTax": 11500.0,
+    "Tax": 0.0,
+    "Total": 11500.0
+  },
+  "Fulfilments": [
+    {
+      "TaskID": "aad39fa7-2ba6-4887-abf9-1e3ac6eae510",
+      "FulfillmentNumber": 1,
+      "LinkedInvoiceNumber": null,
+      "FulFilmentStatus": "FULFILLED",
+      "Pick": {
+        "Status": "AUTHORISED",
+        "Lines": [
+          {
+            "ProductID": "8c181cb4-1741-43ee-8f7e-d771225914f2",
+            "SKU": "BAGLV165",
+            "Name": "LOUIS VUITTON Damier Ebene Neverfull MM",
+            "Location": "Head Office, Cape Town",
+            "LocationID": "57704d46-87fb-4cb5-913a-2684a242aa17",
+            "Quantity": 1.0,
+            "BatchSN": null,
+            "ExpiryDate": null,
+            "ProductLength": 0.0,
+            "ProductWidth": 0.0,
+            "ProductHeight": 0.0,
+            "ProductWeight": 0.0,
+            "WeightUnits": null,
+            "DimensionsUnits": null,
+            "ProductCustomField1": null,
+            "ProductCustomField2": null,
+            "ProductCustomField3": null,
+            "ProductCustomField4": null,
+            "ProductCustomField5": null,
+            "ProductCustomField6": null,
+            "ProductCustomField7": null,
+            "ProductCustomField8": null,
+            "ProductCustomField9": null,
+            "ProductCustomField10": null,
+            "NonInventory": false
+          }
+        ]
+      },
+      "Pack": {
+        "Status": "AUTHORISED",
+        "Lines": [
+          {
+            "ProductID": "8c181cb4-1741-43ee-8f7e-d771225914f2",
+            "SKU": "BAGLV165",
+            "Name": "LOUIS VUITTON Damier Ebene Neverfull MM",
+            "Location": "Head Office, Cape Town",
+            "LocationID": "57704d46-87fb-4cb5-913a-2684a242aa17",
+            "Box": "Box 1",
+            "Quantity": 1.0,
+            "BatchSN": null,
+            "ExpiryDate": null,
+            "ProductLength": 0.0,
+            "ProductWidth": 0.0,
+            "ProductHeight": 0.0,
+            "ProductWeight": 0.0,
+            "WeightUnits": null,
+            "DimensionsUnits": null,
+            "ProductCustomField1": null,
+            "ProductCustomField2": null,
+            "ProductCustomField3": null,
+            "ProductCustomField4": null,
+            "ProductCustomField5": null,
+            "ProductCustomField6": null,
+            "ProductCustomField7": null,
+            "ProductCustomField8": null,
+            "ProductCustomField9": null,
+            "ProductCustomField10": null,
+            "NonInventory": false
+          }
+        ]
+      },
+      "Ship": {
+        "Status": "AUTHORISED",
+        "RequireBy": null,
+        "ShippingAddress": {
+          "DisplayAddressLine1": "",
+          "DisplayAddressLine2": "",
+          "Line1": "",
+          "Line2": "",
+          "City": "",
+          "State": "",
+          "Postcode": "",
+          "Country": "",
+          "Company": "Sabeeha Sabi",
+          "Contact": "",
+          "ShipToOther": false
+        },
+        "ShippingNotes": null,
+        "Lines": [
+          {
+            "ID": "6ff4bf87-0381-4eb1-a2f4-c9b77eee7cc3",
+            "ShipmentDate": "2017-03-06T00:00:00Z",
+            "Carrier": "Fastway",
+            "Boxes": "Box 1",
+            "TrackingNumber": "",
+            "TrackingURL": "",
+            "IsShipped": true
+          }
+        ]
+      }
+    }
+  ],
+  "Invoices": [
+    {
+      "TaskID": "aad39fa7-2ba6-4887-abf9-1e3ac6eae510",
+      "InvoiceNumber": "INV-00001",
+      "Memo": "",
+      "Status": "PAID",
+      "InvoiceDate": "2017-01-31T00:00:00Z",
+      "InvoiceDueDate": "2017-03-02T00:00:00Z",
+      "CurrencyConversionRate": 1.0,
+      "BillingAddressLine1": "",
+      "BillingAddressLine2": "",
+      "LinkedFulfillmentNumber": null,
+      "Lines": [
+        {
+          "ProductID": "8c181cb4-1741-43ee-8f7e-d771225914f2",
+          "SKU": "BAGLV165",
+          "Name": "LOUIS VUITTON Damier Ebene Neverfull MM",
+          "Quantity": 1.0,
+          "Price": 11500.0,
+          "Discount": 0.0,
+          "Tax": 0.0,
+          "Total": 11500.0,
+          "AverageCost": 4500.0,
+          "TaxRule": "No VAT",
+          "Account": "200",
+          "Comment": "",
+          "ProductLength": 0.0,
+          "ProductWidth": 0.0,
+          "ProductHeight": 0.0,
+          "ProductWeight": 0.0,
+          "WeightUnits": null,
+          "DimensionsUnits": null,
+          "ProductCustomField1": null,
+          "ProductCustomField2": null,
+          "ProductCustomField3": null,
+          "ProductCustomField4": null,
+          "ProductCustomField5": null,
+          "ProductCustomField6": null,
+          "ProductCustomField7": null,
+          "ProductCustomField8": null,
+          "ProductCustomField9": null,
+          "ProductCustomField10": null
+        }
+      ],
+      "AdditionalCharges": [],
+      "Payments": [
+        {
+          "ID": "18076608-6522-ef3a-dc89-28626e44d3e2",
+          "Reference": "Sabeeha Neverfull LV",
+          "Amount": 8500.0,
+          "DatePaid": "2017-03-04T00:00:00Z",
+          "Account": "201",
+          "CurrencyRate": 1.0,
+          "DateCreated": "2017-03-06T06:32:45.6365933Z"
+        },
+        {
+          "ID": "fd04f79b-6ec3-db8d-80ba-322a9a2be8f9",
+          "Reference": "Credit for Sale SO-00001",
+          "Amount": 3000.0,
+          "DatePaid": "2018-05-21T00:00:00Z",
+          "Account": "620",
+          "CurrencyRate": 1.0,
+          "DateCreated": "2018-05-21T11:21:37.7253244Z"
+        }
+      ],
+      "TotalBeforeTax": 11500.0,
+      "Tax": 0.0,
+      "Total": 11500.0,
+      "Paid": 14500.0
+    }
+  ],
+  "CreditNotes": [
+    {
+      "TaskID": "aad39fa7-2ba6-4887-abf9-1e3ac6eae510",
+      "CreditNoteInvoiceNumber": "",
+      "Memo": "",
+      "Status": "NOT AVAILABLE",
+      "CreditNoteDate": null,
+      "CreditNoteNumber": null,
+      "CreditNoteConversionRate": 1.0,
+      "Lines": [],
+      "AdditionalCharges": [],
+      "Refunds": [],
+      "Restock": [],
+      "TotalBeforeTax": 0.0,
+      "Tax": 0.0,
+      "Total": 0.0
+    }
+  ],
+  "ManualJournals": {
+    "Status": "NOT AVAILABLE",
+    "Lines": []
+  },
+  "ExternalID": null,
+  "AdditionalAttributes": {
+    "AdditionalAttribute1": "",
+    "AdditionalAttribute2": "",
+    "AdditionalAttribute3": "",
+    "AdditionalAttribute4": "",
+    "AdditionalAttribute5": "",
+    "AdditionalAttribute6": "",
+    "AdditionalAttribute7": "",
+    "AdditionalAttribute8": "",
+    "AdditionalAttribute9": "",
+    "AdditionalAttribute10": ""
+  },
+  "Attachments": [
+    {
+      "ID": "a63e2f4b-297c-4792-8f85-f01d5985a5a9",
+      "ContentType": "application/pdf",
+      "FileName": "InvoiceFullPayment+INV-00001+for+Sabeeha.pdf",
+      "DownloadUrl": "https://inventory.dearsystems.com/Attachment/Download?ID=a63e2f4b-297c-4792-8f85-f01d5985a5a9&ContentType=application/pdf&FileName=InvoiceFullPayment+INV-00001+for+Sabeeha.pdf"
+    }
+  ],
+  "InventoryMovements": [
+    {
+      "TaskID": "aad39fa7-2ba6-4887-abf9-1e3ac6eae510",
+      "ProductID": "8c181cb4-1741-43ee-8f7e-d771225914f2",
+      "Date": "2017-03-06T00:00:00Z",
+      "COGS": -4500.0,
+      "ProductLength": 0.0,
+      "ProductWidth": 0.0,
+      "ProductHeight": 0.0,
+      "ProductWeight": 0.0,
+      "WeightUnits": null,
+      "DimensionsUnits": null,
+      "ProductCustomField1": null,
+      "ProductCustomField2": null,
+      "ProductCustomField3": null,
+      "ProductCustomField4": null,
+      "ProductCustomField5": null,
+      "ProductCustomField6": null,
+      "ProductCustomField7": null,
+      "ProductCustomField8": null,
+      "ProductCustomField9": null,
+      "ProductCustomField10": null
+    }
+  ]
+}
