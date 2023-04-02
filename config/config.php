@@ -29,5 +29,6 @@ return [
         'sale_quote' => \Bonlineza\DearDatabase\Models\SaleQuote::class,
         'sale_order' => \Bonlineza\DearDatabase\Models\SaleOrder::class,
         'sale_shipping_address' => \Bonlineza\DearDatabase\Models\SaleShippingAddress::class,
+        'sale_manual_journal' => \Bonlineza\DearDatabase\Models\SaleManualJournal::class,
     ]
 ];
