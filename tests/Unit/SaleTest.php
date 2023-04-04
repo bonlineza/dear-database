@@ -52,6 +52,12 @@ class SaleTest extends TestCase
         // Sale Order
         $this->assertSaleOrder($dear_sale, $sale);
 
+        // Sale Order Lines
+        $this->assertSaleOrderLines($dear_sale, $sale);
+
+        // Sale Order Additional Charges
+        $this->assertSaleOrderAdditionalCharges($dear_sale, $sale);
+
         // Sale Manual Journal
         $this->assertSaleManualJournal($dear_sale, $sale);
 
@@ -114,6 +120,12 @@ class SaleTest extends TestCase
 
         // Sale Order
         $this->assertSaleOrder($dear_sale, $sale);
+
+        // Sale Order Lines
+        $this->assertSaleOrderLines($dear_sale, $sale);
+
+        // Sale Order Additional Charges
+        $this->assertSaleOrderAdditionalCharges($dear_sale, $sale);
 
         // Sale Manual Journal
         $this->assertSaleManualJournal($dear_sale, $sale);

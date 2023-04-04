@@ -13,6 +13,7 @@ use Bonlineza\DearDatabase\Models\SaleFulfilment;
 use Bonlineza\DearDatabase\Models\SaleInvoice;
 use Bonlineza\DearDatabase\Models\SaleManualJournal;
 use Bonlineza\DearDatabase\Models\SaleOrder;
+use Bonlineza\DearDatabase\Models\SaleOrderLine;
 use Bonlineza\DearDatabase\Models\SalePaymentLine;
 use Bonlineza\DearDatabase\Models\SaleQuote;
 use Bonlineza\DearDatabase\Models\SaleQuoteLine;
@@ -122,6 +123,37 @@ trait SaleHelper
         foreach (SaleOrder::getDearMapping() as $dear_key => $db_key) {
             $this->assertEquals($dear_order[$dear_key], $db_order->$db_key);
         }
+    }
+
+    private function assertSaleOrderLines($dear_sale, $db_sale): void
+    {
+        $order_line_guids = array_column($dear_sale['Order']['Lines'], 'ProductID');
+        foreach ($order_line_guids as $key => $order_line_guid) {
+            $db_order_line = $db_sale->saleOrder->saleOrderLines()->where('product_guid', $order_line_guid)->first();
+            $dear_order_line = $db_sale['Order']['Lines'][$key];
+            foreach (SaleOrderLine::getDearMapping() as $dear_key => $db_key) {
+                $this->assertEquals($dear_order_line[$dear_key], $db_order_line->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleOrderAdditionalCharges($dear_sale, $db_sale): void
+    {
+        $mapped_dear_charges = [];
+        foreach ($dear_sale['Order']['AdditionalCharges'] as $key => $dear_charge) {
+            foreach (SaleAdditionalCharge::getDearMapping() as $dear_key => $db_key) {
+                $mapped_dear_charges[$key][$db_key] = $dear_charge[$dear_key];
+            }
+        }
+        $mapped_db_charges = [];
+        /** @var SaleOrder $db_sale_order */
+        $db_sale_order = $db_sale->saleOrder;
+        foreach ($db_sale_order->saleAdditionalCharges as $key => $db_charge) {
+            foreach (SaleAdditionalCharge::getDearMapping() as $db_key) {
+                $mapped_db_charges[$key][$db_key] = $db_charge[$db_key];
+            }
+        }
+        $this->assertTrue($mapped_db_charges == $mapped_dear_charges);
     }
 
     private function assertSaleManualJournal($dear_sale, $db_sale): void

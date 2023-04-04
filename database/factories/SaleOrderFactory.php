@@ -2,7 +2,9 @@
 
 namespace Bonlineza\DearDatabase\Database\Factories;
 
+use Bonlineza\DearDatabase\Models\SaleAdditionalCharge;
 use Bonlineza\DearDatabase\Models\SaleOrder;
+use Bonlineza\DearDatabase\Models\SaleOrderLine;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SaleOrderFactory extends Factory
@@ -25,5 +27,23 @@ class SaleOrderFactory extends Factory
             'tax' => 1,
             'total' => 1,
         ];
+    }
+
+    /**
+     * Configure the model factory.
+     */
+    public function configure(): self
+    {
+        return $this->afterCreating(function ($sale_order) {
+            /** @var SaleOrder $sale_order */
+            $sale_order->saleOrderLines()->sync([
+                SaleOrderLine::factory()->create()->id,
+                SaleOrderLine::factory()->create()->id,
+            ]);
+            $sale_order->saleAdditionalCharges()->sync([
+                SaleAdditionalCharge::factory()->create()->id,
+                SaleAdditionalCharge::factory()->create()->id,
+            ]);
+        });
     }
 }
