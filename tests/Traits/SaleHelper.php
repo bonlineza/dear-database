@@ -7,12 +7,15 @@ use Bonlineza\DearDatabase\Models\Address;
 use Bonlineza\DearDatabase\Models\AttachmentLine;
 use Bonlineza\DearDatabase\Models\InventoryMovementLine;
 use Bonlineza\DearDatabase\Models\Sale;
+use Bonlineza\DearDatabase\Models\SaleAdditionalCharge;
 use Bonlineza\DearDatabase\Models\SaleCreditNote;
 use Bonlineza\DearDatabase\Models\SaleFulfilment;
 use Bonlineza\DearDatabase\Models\SaleInvoice;
 use Bonlineza\DearDatabase\Models\SaleManualJournal;
 use Bonlineza\DearDatabase\Models\SaleOrder;
+use Bonlineza\DearDatabase\Models\SalePaymentLine;
 use Bonlineza\DearDatabase\Models\SaleQuote;
+use Bonlineza\DearDatabase\Models\SaleQuoteLine;
 use Bonlineza\DearDatabase\Models\SaleShippingAddress;
 use Carbon\Carbon;
 
@@ -59,6 +62,57 @@ trait SaleHelper
         foreach (SaleQuote::getDearMapping() as $dear_key => $db_key) {
             $this->assertEquals($dear_quote[$dear_key], $db_quote->$db_key);
         }
+    }
+
+    private function assertSalePrePaymentLines($dear_sale, $db_sale): void
+    {
+        $date_fields = array_filter(SalePaymentLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+        $payment_line_guids = array_column($dear_sale['Quote']['Prepayments'], 'ID');
+        foreach ($payment_line_guids as $key => $payment_line_guid) {
+            $db_payment_line = $db_sale->saleQuote->salePaymentLines()->where('external_guid', $payment_line_guid)->first();
+            $dear_payment_line = $dear_sale['Quote']['Prepayments'][$key];
+            foreach (SalePaymentLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_payment_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_payment_line[$dear_key])->format('Y-m-d H:i:s');
+                    $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_payment_line->$db_key));
+                    continue;
+                }
+                $this->assertEquals($dear_payment_line[$dear_key], $db_payment_line->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleQuoteLines($dear_sale, $db_sale): void
+    {
+        $quote_line_guids = array_column($dear_sale['Quote']['Lines'], 'ProductID');
+        foreach ($quote_line_guids as $key => $quote_line_guid) {
+            $db_quote_line = $db_sale->saleQuote->saleQuoteLines()->where('product_guid', $quote_line_guid)->first();
+            $dear_quote_line = $db_sale['Quote']['Lines'][$key];
+            foreach (SaleQuoteLine::getDearMapping() as $dear_key => $db_key) {
+                $this->assertEquals($dear_quote_line[$dear_key], $db_quote_line->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleQuoteAdditionalCharges($dear_sale, $db_sale): void
+    {
+        $mapped_dear_charges = [];
+        foreach ($dear_sale['Quote']['AdditionalCharges'] as $key => $dear_charge) {
+            foreach (SaleAdditionalCharge::getDearMapping() as $dear_key => $db_key) {
+                $mapped_dear_charges[$key][$db_key] = $dear_charge[$dear_key];
+            }
+        }
+        $mapped_db_charges = [];
+        /** @var SaleQuote $db_sale_quote */
+        $db_sale_quote = $db_sale->saleQuote;
+        foreach ($db_sale_quote->saleAdditionalCharges as $key => $db_charge) {
+            foreach (SaleAdditionalCharge::getDearMapping() as $db_key) {
+                $mapped_db_charges[$key][$db_key] = $db_charge[$db_key];
+            }
+        }
+        $this->assertTrue($mapped_db_charges == $mapped_dear_charges);
     }
 
     private function assertSaleOrder($dear_sale, $db_sale): void
