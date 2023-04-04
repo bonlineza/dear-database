@@ -35,5 +35,6 @@ return [
         'sale_invoice' => \Bonlineza\DearDatabase\Models\SaleInvoice::class,
         'sale_fulfilment' => \Bonlineza\DearDatabase\Models\SaleFulfilment::class,
         'sale_payment_line' => \Bonlineza\DearDatabase\Models\SalePaymentLine::class,
+        'sale_quote_line' => \Bonlineza\DearDatabase\Models\SaleQuoteLine::class,
     ]
 ];
