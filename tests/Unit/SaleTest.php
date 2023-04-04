@@ -61,6 +61,9 @@ class SaleTest extends TestCase
         // Sale Manual Journal
         $this->assertSaleManualJournal($dear_sale, $sale);
 
+        // Sale Manual Journal Lines
+        $this->assertSaleManualJournalLines($dear_sale, $sale);
+
         // Sale Additional Attribute
         $this->assertSaleAdditionalAttribute($dear_sale, $sale);
 
@@ -129,6 +132,9 @@ class SaleTest extends TestCase
 
         // Sale Manual Journal
         $this->assertSaleManualJournal($dear_sale, $sale);
+
+        // Sale Manual Journal Lines
+        $this->assertSaleManualJournalLines($dear_sale, $sale);
 
         // Sale Additional Attribute
         $this->assertSaleAdditionalAttribute($dear_sale, $sale);
