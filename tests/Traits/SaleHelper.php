@@ -12,6 +12,7 @@ use Bonlineza\DearDatabase\Models\SaleCreditNote;
 use Bonlineza\DearDatabase\Models\SaleFulfilment;
 use Bonlineza\DearDatabase\Models\SaleInvoice;
 use Bonlineza\DearDatabase\Models\SaleManualJournal;
+use Bonlineza\DearDatabase\Models\SaleManualJournalLine;
 use Bonlineza\DearDatabase\Models\SaleOrder;
 use Bonlineza\DearDatabase\Models\SaleOrderLine;
 use Bonlineza\DearDatabase\Models\SalePaymentLine;
@@ -163,6 +164,27 @@ trait SaleHelper
         foreach (SaleManualJournal::getDearMapping() as $dear_key => $db_key) {
             $this->assertEquals($dear_manual_journal[$dear_key], $db_manual_journal->$db_key);
         }
+    }
+
+    private function assertSaleManualJournalLines($dear_sale, $db_sale): void
+    {
+        $mapped_dear_manual_journal_lines = [];
+        foreach ($dear_sale['ManualJournals']['Lines'] as $key => $dear_manual_journal_line) {
+            foreach (SaleManualJournalLine::getDearMapping() as $dear_key => $db_key) {
+                $mapped_dear_manual_journal_lines[$key][$db_key] = $dear_manual_journal_line[$dear_key];
+            }
+        }
+
+        $mapped_db_manual_journal_lines = [];
+        /** @var SaleManualJournal $db_sale_manual_journal */
+        $db_sale_manual_journal = $db_sale->saleManualJournal;
+        foreach ($db_sale_manual_journal->saleManualJournalLines as $key => $db_manual_journal_line) {
+            foreach (SaleManualJournalLine::getDearMapping() as $db_key) {
+                $mapped_db_manual_journal_lines[$key][$db_key] = $db_manual_journal_line[$db_key];
+            }
+        }
+
+        $this->assertTrue($mapped_dear_manual_journal_lines == $mapped_db_manual_journal_lines);
     }
 
     private function assertSaleAdditionalAttribute($dear_sale, $db_sale): void
