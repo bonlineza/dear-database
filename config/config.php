@@ -37,5 +37,6 @@ return [
         'sale_payment_line' => \Bonlineza\DearDatabase\Models\SalePaymentLine::class,
         'sale_quote_line' => \Bonlineza\DearDatabase\Models\SaleQuoteLine::class,
         'sale_additional_charge' => \Bonlineza\DearDatabase\Models\SaleAdditionalCharge::class,
+        'sale_order_line' => \Bonlineza\DearDatabase\Models\SaleOrderLine::class,
     ]
 ];
