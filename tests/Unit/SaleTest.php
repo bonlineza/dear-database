@@ -40,6 +40,15 @@ class SaleTest extends TestCase
         // Sale Quote
         $this->assertSaleQuote($dear_sale, $sale);
 
+        // Sale Pre Payment Lines
+        $this->assertSalePrePaymentLines($dear_sale, $sale);
+
+        // Sale Quote Lines
+        $this->assertSaleQuoteLines($dear_sale, $sale);
+
+        // Sale Quote Additional Charges
+        $this->assertSaleQuoteAdditionalCharges($dear_sale, $sale);
+
         // Sale Order
         $this->assertSaleOrder($dear_sale, $sale);
 
@@ -93,6 +102,15 @@ class SaleTest extends TestCase
 
         // Sale Quote
         $this->assertSaleQuote($dear_sale, $sale);
+
+        // Sale Pre Payment Lines
+        $this->assertSalePrePaymentLines($dear_sale, $sale);
+
+        // Sale Quote Lines
+        $this->assertSaleQuoteLines($dear_sale, $sale);
+
+        // Sale Quote Additional Charges
+        $this->assertSaleQuoteAdditionalCharges($dear_sale, $sale);
 
         // Sale Order
         $this->assertSaleOrder($dear_sale, $sale);
