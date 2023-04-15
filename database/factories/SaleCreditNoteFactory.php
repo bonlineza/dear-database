@@ -3,6 +3,10 @@
 namespace Bonlineza\DearDatabase\Database\Factories;
 
 use Bonlineza\DearDatabase\Models\SaleCreditNote;
+use Bonlineza\DearDatabase\Models\SaleFulfilmentPick;
+use Bonlineza\DearDatabase\Models\SaleInvoiceAdditionalCharge;
+use Bonlineza\DearDatabase\Models\SaleInvoiceLine;
+use Bonlineza\DearDatabase\Models\SalePaymentLine;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,5 +31,31 @@ class SaleCreditNoteFactory extends Factory
             'tax' => 1,
             'total' => 1,
         ];
+    }
+
+    /**
+     * Configure the model factory.
+     */
+    public function configure(): self
+    {
+        return $this->afterCreating(function ($sale_credit_note) {
+            /** @var SaleCreditNote $sale_credit_note */
+            $sale_credit_note->saleInvoiceLines()->sync([
+                SaleInvoiceLine::factory()->create()->id,
+                SaleInvoiceLine::factory()->create()->id,
+            ]);
+            $sale_credit_note->saleInvoiceAdditionalCharges()->sync([
+                SaleInvoiceAdditionalCharge::factory()->create()->id,
+                SaleInvoiceAdditionalCharge::factory()->create()->id,
+            ]);
+            $sale_credit_note->salePaymentLines()->sync([
+                SalePaymentLine::factory()->create()->id,
+                SalePaymentLine::factory()->create()->id,
+            ]);
+            $sale_credit_note->saleFulfilmentPickLines()->sync([
+                SaleFulfilmentPick::factory()->create()->id,
+                SaleFulfilmentPick::factory()->create()->id,
+            ]);
+        });
     }
 }
