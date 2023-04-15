@@ -103,6 +103,18 @@ class SaleTest extends TestCase
         // Sale Credit Notes
         $this->assertSaleCreditNotes($dear_sale, $sale);
 
+        // Sale Credit Note Invoice Lines
+        $this->assertSaleCreditNoteInvoiceLines($dear_sale, $sale);
+
+        // Sale Credit Note Additional Charges
+        $this->assertSaleCreditNoteInvoiceAdditionalCharges($dear_sale, $sale);
+
+        // Sale Credit Note Payment Lines
+        $this->assertSaleCreditNotePaymentLines($dear_sale, $sale);
+
+        // Sale Credit Note Restock(Pick) Lines
+        $this->assertSaleCreditNoteRestockLines($dear_sale, $sale);
+
         // Sale Attachment Lines
         $this->assertSaleAttachmentLines($dear_sale, $sale);
 
@@ -201,6 +213,18 @@ class SaleTest extends TestCase
 
         // Sale Credit Notes
         $this->assertSaleCreditNotes($dear_sale, $sale);
+
+        // Sale Credit Note Invoice Lines
+        $this->assertSaleCreditNoteInvoiceLines($dear_sale, $sale);
+
+        // Sale Credit Note Additional Charges
+        $this->assertSaleCreditNoteInvoiceAdditionalCharges($dear_sale, $sale);
+
+        // Sale Credit Note Payment Lines
+        $this->assertSaleCreditNotePaymentLines($dear_sale, $sale);
+
+        // Sale Credit Note Restock(Pick) Lines
+        $this->assertSaleCreditNoteRestockLines($dear_sale, $sale);
 
         // Sale Attachment Lines
         $this->assertSaleAttachmentLines($dear_sale, $sale);
