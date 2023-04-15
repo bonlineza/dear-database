@@ -3,6 +3,9 @@
 namespace Bonlineza\DearDatabase\Database\Factories;
 
 use Bonlineza\DearDatabase\Models\SaleInvoice;
+use Bonlineza\DearDatabase\Models\SaleInvoiceAdditionalCharge;
+use Bonlineza\DearDatabase\Models\SaleInvoiceLine;
+use Bonlineza\DearDatabase\Models\SalePaymentLine;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -34,5 +37,27 @@ class SaleInvoiceFactory extends Factory
             'total' => 1,
             'paid' => 1,
         ];
+    }
+
+    /**
+     * Configure the model factory.
+     */
+    public function configure(): self
+    {
+        return $this->afterCreating(function ($sale_invoice) {
+            /** @var SaleInvoice $sale_invoice */
+            $sale_invoice->saleInvoiceLines()->sync([
+                SaleInvoiceLine::factory()->create()->id,
+                SaleInvoiceLine::factory()->create()->id,
+            ]);
+            $sale_invoice->saleInvoiceAdditionalCharges()->sync([
+                SaleInvoiceAdditionalCharge::factory()->create()->id,
+                SaleInvoiceAdditionalCharge::factory()->create()->id,
+            ]);
+            $sale_invoice->salePaymentLines()->sync([
+                SalePaymentLine::factory()->create()->id,
+                SalePaymentLine::factory()->create()->id,
+            ]);
+        });
     }
 }

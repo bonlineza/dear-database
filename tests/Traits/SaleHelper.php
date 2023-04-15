@@ -17,6 +17,8 @@ use Bonlineza\DearDatabase\Models\SaleFulfilmentPickLine;
 use Bonlineza\DearDatabase\Models\SaleFulfilmentShip;
 use Bonlineza\DearDatabase\Models\SaleFulfilmentShipLine;
 use Bonlineza\DearDatabase\Models\SaleInvoice;
+use Bonlineza\DearDatabase\Models\SaleInvoiceAdditionalCharge;
+use Bonlineza\DearDatabase\Models\SaleInvoiceLine;
 use Bonlineza\DearDatabase\Models\SaleManualJournal;
 use Bonlineza\DearDatabase\Models\SaleManualJournalLine;
 use Bonlineza\DearDatabase\Models\SaleOrder;
@@ -336,6 +338,60 @@ trait SaleHelper
                     continue;
                 }
                 $this->assertEquals($dear_sale_invoice[$dear_key], $db_sale_invoice->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleInvoiceLines($dear_sale, $db_sale): void
+    {
+        $invoice_line_guids = array_column($dear_sale['Invoice']['Lines'], 'ProductID');
+        foreach ($invoice_line_guids as $key => $invoice_line_guid) {
+            $db_invoice_line = $db_sale->saleInvoice->saleInvoiceLines()->where('product_guid', $invoice_line_guid)->first();
+            $dear_invoice_line = $dear_sale['Invoice']['Lines'][$key];
+            foreach (SaleInvoiceLine::getDearMapping() as $dear_key => $db_key) {
+                $this->assertEquals($dear_invoice_line[$dear_key], $db_invoice_line->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleInvoiceAdditionalCharges($dear_sale, $db_sale): void
+    {
+        $mapped_dear_invoice_additional_charges = [];
+        foreach ($dear_sale['Invoice']['AdditionalCharges'] as $key => $dear_invoice_additional_charge) {
+            foreach (SaleInvoiceAdditionalCharge::getDearMapping() as $dear_key => $db_key) {
+                $mapped_dear_invoice_additional_charges[$key][$db_key] = $dear_invoice_additional_charge[$dear_key];
+            }
+        }
+
+        $mapped_db_invoice_additional_charges = [];
+        /** @var SaleInvoice $db_sale_invoice */
+        $db_sale_invoice = $db_sale->saleInvoice;
+        foreach ($db_sale_invoice->saleInvoiceAdditionalCharges as $key => $db_invoice_additional_charge) {
+            foreach (SaleInvoiceAdditionalCharge::getDearMapping() as $db_key) {
+                $mapped_db_invoice_additional_charges[$key][$db_key] = $db_invoice_additional_charge[$db_key];
+            }
+        }
+
+        $this->assertTrue($mapped_db_invoice_additional_charges == $mapped_dear_invoice_additional_charges);
+    }
+
+
+    private function assertSaleInvoicePaymentLines($dear_sale, $db_sale): void
+    {
+        $date_fields = array_filter(SalePaymentLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+        $payment_line_guids = array_column($dear_sale['Invoice']['Payments'], 'ID');
+        foreach ($payment_line_guids as $key => $payment_line_guid) {
+            $db_payment_line = $db_sale->saleInvoice->salePaymentLines()->where('external_guid', $payment_line_guid)->first();
+            $dear_payment_line = $dear_sale['Invoice']['Payments'][$key];
+            foreach (SalePaymentLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_payment_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_payment_line[$dear_key])->format('Y-m-d H:i:s');
+                    $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_payment_line->$db_key));
+                    continue;
+                }
+                $this->assertEquals($dear_payment_line[$dear_key], $db_payment_line->$db_key);
             }
         }
     }

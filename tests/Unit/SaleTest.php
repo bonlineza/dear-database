@@ -91,6 +91,15 @@ class SaleTest extends TestCase
         // Sale Invoices
         $this->assertSaleInvoices($dear_sale, $sale);
 
+        // Sale Invoice Lines
+        $this->assertSaleInvoiceLines($dear_sale, $sale);
+
+        // Sale Invoice Additional Charges
+        $this->assertSaleInvoiceAdditionalCharges($dear_sale, $sale);
+
+        // Sale Invoice Payment Lines
+        $this->assertSaleInvoicePaymentLines($dear_sale, $sale);
+
         // Sale Credit Notes
         $this->assertSaleCreditNotes($dear_sale, $sale);
 
@@ -180,6 +189,15 @@ class SaleTest extends TestCase
 
         // Sale Invoices
         $this->assertSaleInvoices($dear_sale, $sale);
+
+        // Sale Invoice Lines
+        $this->assertSaleInvoiceLines($dear_sale, $sale);
+
+        // Sale Invoice Additional Charges
+        $this->assertSaleInvoiceAdditionalCharges($dear_sale, $sale);
+
+        // Sale Invoice Payment Lines
+        $this->assertSaleInvoicePaymentLines($dear_sale, $sale);
 
         // Sale Credit Notes
         $this->assertSaleCreditNotes($dear_sale, $sale);
