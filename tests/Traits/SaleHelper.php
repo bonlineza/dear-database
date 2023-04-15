@@ -10,6 +10,12 @@ use Bonlineza\DearDatabase\Models\Sale;
 use Bonlineza\DearDatabase\Models\SaleAdditionalCharge;
 use Bonlineza\DearDatabase\Models\SaleCreditNote;
 use Bonlineza\DearDatabase\Models\SaleFulfilment;
+use Bonlineza\DearDatabase\Models\SaleFulfilmentPack;
+use Bonlineza\DearDatabase\Models\SaleFulfilmentPackLine;
+use Bonlineza\DearDatabase\Models\SaleFulfilmentPick;
+use Bonlineza\DearDatabase\Models\SaleFulfilmentPickLine;
+use Bonlineza\DearDatabase\Models\SaleFulfilmentShip;
+use Bonlineza\DearDatabase\Models\SaleFulfilmentShipLine;
 use Bonlineza\DearDatabase\Models\SaleInvoice;
 use Bonlineza\DearDatabase\Models\SaleManualJournal;
 use Bonlineza\DearDatabase\Models\SaleManualJournalLine;
@@ -212,6 +218,147 @@ trait SaleHelper
             $dear_sale_fulfillment = $dear_sale['Fulfilments'][$key];
             foreach (SaleFulfilment::getDearMapping() as $dear_key => $db_key) {
                 $this->assertEquals($dear_sale_fulfillment[$dear_key], $db_sale_fulfilment->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleFulfilmentPick($dear_sale, $db_sale)
+    {
+        $sale_fulfilment_guids = array_column($dear_sale['Fulfilments'], 'TaskID');
+        foreach ($sale_fulfilment_guids as $key => $sale_fulfilment_guid) {
+
+            $db_sale_fulfilment = $db_sale->saleFulfilments()->where('external_guid', $sale_fulfilment_guid)->first();
+            $dear_sale_fulfillment = $dear_sale['Fulfilments'][$key];
+
+            $db_sale_fulfilment_pick = $db_sale_fulfilment->saleFulfilmentPick;
+            $dear_sale_fulfillment_pick = $dear_sale_fulfillment['Pick'];
+            foreach (SaleFulfilmentPick::getDearMapping() as $dear_key => $db_key) {
+                $this->assertEquals($dear_sale_fulfillment_pick[$dear_key], $db_sale_fulfilment_pick->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleFulfilmentPickLines($dear_sale, $db_sale)
+    {
+        $date_fields = array_filter(SaleFulfilmentPickLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+
+        $sale_fulfilment_guids = array_column($dear_sale['Fulfilments'], 'TaskID');
+        foreach ($sale_fulfilment_guids as $key => $sale_fulfilment_guid) {
+
+            $db_sale_fulfilment = $db_sale->saleFulfilments()->where('external_guid', $sale_fulfilment_guid)->first();
+            $dear_sale_fulfillment = $dear_sale['Fulfilments'][$key];
+
+            $pick_line_guids = array_column($dear_sale_fulfillment['Pick']['Lines'], 'ProductID');
+            foreach ($pick_line_guids as $key => $pick_line_guid) {
+                $db_pick_line = $db_sale_fulfilment->saleFulfilmentPick->saleFulfilmentPickLines()->where('product_guid', $pick_line_guid)->first();
+                $dear_pick_line = $dear_sale_fulfillment['Pick']['Lines'][$key];
+                foreach (SaleFulfilmentPickLine::getDearMapping() as $dear_key => $db_key) {
+                    if (!is_null($dear_pick_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                        $formatted_date = Carbon::parse($dear_pick_line[$dear_key])->format('Y-m-d H:i:s');
+                        $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_pick_line->$db_key));
+                        continue;
+                    }
+                    $this->assertEquals($dear_pick_line[$dear_key], $db_pick_line->$db_key);
+                }
+            }
+        }
+    }
+
+    private function assertSaleFulfilmentPack($dear_sale, $db_sale)
+    {
+        $sale_fulfilment_guids = array_column($dear_sale['Fulfilments'], 'TaskID');
+        foreach ($sale_fulfilment_guids as $key => $sale_fulfilment_guid) {
+
+            $db_sale_fulfilment = $db_sale->saleFulfilments()->where('external_guid', $sale_fulfilment_guid)->first();
+            $dear_sale_fulfillment = $dear_sale['Fulfilments'][$key];
+
+            $db_sale_fulfilment_pack = $db_sale_fulfilment->saleFulfilmentPack;
+            $dear_sale_fulfillment_pack = $dear_sale_fulfillment['Pack'];
+            foreach (SaleFulfilmentPack::getDearMapping() as $dear_key => $db_key) {
+                $this->assertEquals($dear_sale_fulfillment_pack[$dear_key], $db_sale_fulfilment_pack->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleFulfilmentPackLines($dear_sale, $db_sale)
+    {
+        $date_fields = array_filter(SaleFulfilmentPackLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+
+        $sale_fulfilment_guids = array_column($dear_sale['Fulfilments'], 'TaskID');
+        foreach ($sale_fulfilment_guids as $key => $sale_fulfilment_guid) {
+
+            $db_sale_fulfilment = $db_sale->saleFulfilments()->where('external_guid', $sale_fulfilment_guid)->first();
+            $dear_sale_fulfillment = $dear_sale['Fulfilments'][$key];
+
+            $pack_line_guids = array_column($dear_sale_fulfillment['Pack']['Lines'], 'ProductID');
+            foreach ($pack_line_guids as $key => $pack_line_guid) {
+                $db_pack_line = $db_sale_fulfilment->saleFulfilmentPack->saleFulfilmentPackLines()->where('product_guid', $pack_line_guid)->first();
+                $dear_pack_line = $dear_sale_fulfillment['Pack']['Lines'][$key];
+                foreach (SaleFulfilmentPackLine::getDearMapping() as $dear_key => $db_key) {
+                    if (!is_null($dear_pack_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                        $formatted_date = Carbon::parse($dear_pack_line[$dear_key])->format('Y-m-d H:i:s');
+                        $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_pack_line->$db_key));
+                        continue;
+                    }
+                    $this->assertEquals($dear_pack_line[$dear_key], $db_pack_line->$db_key);
+                }
+            }
+        }
+    }
+
+    private function assertSaleFulfilmentShip($dear_sale, $db_sale)
+    {
+        $date_fields = array_filter(SaleFulfilmentShip::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+
+        $sale_fulfilment_guids = array_column($dear_sale['Fulfilments'], 'TaskID');
+        foreach ($sale_fulfilment_guids as $key => $sale_fulfilment_guid) {
+
+            $db_sale_fulfilment = $db_sale->saleFulfilments()->where('external_guid', $sale_fulfilment_guid)->first();
+            $dear_sale_fulfillment = $dear_sale['Fulfilments'][$key];
+
+            $db_sale_fulfilment_ship = $db_sale_fulfilment->saleFulfilmentShip;
+            $dear_sale_fulfillment_ship = $dear_sale_fulfillment['Ship'];
+            foreach (SaleFulfilmentShip::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_sale_fulfillment_ship[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_sale_fulfillment_ship[$dear_key])->format('Y-m-d H:i:s');
+                    $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_sale_fulfilment_ship->$db_key));
+                    continue;
+                }
+                $this->assertEquals($dear_sale_fulfillment_ship[$dear_key], $db_sale_fulfilment_ship->$db_key);
+            }
+        }
+    }
+
+    private function assertSaleFulfilmentShipLines($dear_sale, $db_sale)
+    {
+        $date_fields = array_filter(SaleFulfilmentShipLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+
+        $sale_fulfilment_guids = array_column($dear_sale['Fulfilments'], 'TaskID');
+        foreach ($sale_fulfilment_guids as $key => $sale_fulfilment_guid) {
+
+            $db_sale_fulfilment = $db_sale->saleFulfilments()->where('external_guid', $sale_fulfilment_guid)->first();
+            $dear_sale_fulfillment = $dear_sale['Fulfilments'][$key];
+
+            $ship_line_guids = array_column($dear_sale_fulfillment['Ship']['Lines'], 'ID');
+            foreach ($ship_line_guids as $key => $ship_line_guid) {
+                $db_ship_line = $db_sale_fulfilment->saleFulfilmentShip->saleFulfilmentShipLines()->where('external_guid', $ship_line_guid)->first();
+                $dear_ship_line = $dear_sale_fulfillment['Ship']['Lines'][$key];
+                foreach (SaleFulfilmentShipLine::getDearMapping() as $dear_key => $db_key) {
+                    if (in_array($dear_key, array_keys($date_fields))) {
+                        $formatted_date = Carbon::parse($dear_ship_line[$dear_key])->format('Y-m-d H:i:s');
+                        $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_ship_line->$db_key));
+                        continue;
+                    }
+                    $this->assertEquals($dear_ship_line[$dear_key], $db_ship_line->$db_key);
+                }
             }
         }
     }
