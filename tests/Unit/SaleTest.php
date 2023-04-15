@@ -70,6 +70,24 @@ class SaleTest extends TestCase
         // Sale Fulfilments
         $this->assertSaleFulfilments($dear_sale, $sale);
 
+        // Sale Fulfilment Pick
+        $this->assertSaleFulfilmentPick($dear_sale, $sale);
+
+        // Sale Fulfilment Pick Lines
+        $this->assertSaleFulfilmentPickLines($dear_sale, $sale);
+
+        // Sale Fulfilment Pack
+        $this->assertSaleFulfilmentPack($dear_sale, $sale);
+
+        // Sale Fulfilment Pack Lines
+        $this->assertSaleFulfilmentPackLines($dear_sale, $sale);
+
+        // Sale Fulfilment Ships
+        $this->assertSaleFulfilmentShip($dear_sale, $sale);
+
+        // Sale Fulfilment Ship Lines
+        $this->assertSaleFulfilmentShipLines($dear_sale, $sale);
+
         // Sale Invoices
         $this->assertSaleInvoices($dear_sale, $sale);
 
@@ -141,6 +159,24 @@ class SaleTest extends TestCase
 
         // Sale Fulfilments
         $this->assertSaleFulfilments($dear_sale, $sale);
+
+        // Sale Fulfilment Pick
+        $this->assertSaleFulfilmentPick($dear_sale, $sale);
+
+        // Sale Fulfilment Pick Lines
+        $this->assertSaleFulfilmentPickLines($dear_sale, $sale);
+
+        // Sale Fulfilment Pack
+        $this->assertSaleFulfilmentPack($dear_sale, $sale);
+
+        // Sale Fulfilment Pack Lines
+        $this->assertSaleFulfilmentPackLines($dear_sale, $sale);
+
+        // Sale Fulfilment Ships
+        $this->assertSaleFulfilmentShip($dear_sale, $sale);
+
+        // Sale Fulfilment Ship Lines
+        $this->assertSaleFulfilmentShipLines($dear_sale, $sale);
 
         // Sale Invoices
         $this->assertSaleInvoices($dear_sale, $sale);
