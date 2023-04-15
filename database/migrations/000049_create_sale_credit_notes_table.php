@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sale_credit_notes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->text('external_guid')->nullable();
+            $table->uuid('external_guid')->nullable();
             $table->text('credit_note_invoice_number')->nullable();
             $table->text('memo')->nullable();
             $table->text('status');
