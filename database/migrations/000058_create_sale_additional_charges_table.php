@@ -21,8 +21,8 @@ return new class extends Migration
             $table->decimal('discount', 12, 2)->nullable();
             $table->decimal('tax', 12, 4)->nullable();
             $table->decimal('total', 12, 4)->nullable();
-            $table->string('tax_rule')->nullable();
-            $table->string('comment')->nullable();
+            $table->text('tax_rule')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
