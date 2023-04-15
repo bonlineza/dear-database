@@ -44,5 +44,6 @@ return [
         'sale_fulfilment_ship' => \Bonlineza\DearDatabase\Models\SaleFulfilmentShip::class,
         'sale_fulfilment_pick_line' => \Bonlineza\DearDatabase\Models\SaleFulfilmentPickLine::class,
         'sale_fulfilment_pack_line' => \Bonlineza\DearDatabase\Models\SaleFulfilmentPackLine::class,
+        'sale_fulfilment_ship_line' => \Bonlineza\DearDatabase\Models\SaleFulfilmentShipLine::class,
     ]
 ];
