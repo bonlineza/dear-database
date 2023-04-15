@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->text('external_guid')->nullable();
+            $table->uuid('external_guid')->nullable();
             $table->text('customer')->nullable();
             $table->text('customer_guid')->nullable();
             $table->text('contact')->nullable();
