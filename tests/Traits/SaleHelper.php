@@ -100,7 +100,7 @@ trait SaleHelper
         $quote_line_guids = array_column($dear_sale['Quote']['Lines'], 'ProductID');
         foreach ($quote_line_guids as $key => $quote_line_guid) {
             $db_quote_line = $db_sale->saleQuote->saleQuoteLines()->where('product_guid', $quote_line_guid)->first();
-            $dear_quote_line = $db_sale['Quote']['Lines'][$key];
+            $dear_quote_line = $dear_sale['Quote']['Lines'][$key];
             foreach (SaleQuoteLine::getDearMapping() as $dear_key => $db_key) {
                 $this->assertEquals($dear_quote_line[$dear_key], $db_quote_line->$db_key);
             }
@@ -140,7 +140,7 @@ trait SaleHelper
         $order_line_guids = array_column($dear_sale['Order']['Lines'], 'ProductID');
         foreach ($order_line_guids as $key => $order_line_guid) {
             $db_order_line = $db_sale->saleOrder->saleOrderLines()->where('product_guid', $order_line_guid)->first();
-            $dear_order_line = $db_sale['Order']['Lines'][$key];
+            $dear_order_line = $dear_sale['Order']['Lines'][$key];
             foreach (SaleOrderLine::getDearMapping() as $dear_key => $db_key) {
                 $this->assertEquals($dear_order_line[$dear_key], $db_order_line->$db_key);
             }
