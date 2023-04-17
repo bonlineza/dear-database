@@ -47,5 +47,6 @@ return [
         'sale_fulfilment_ship_line' => \Bonlineza\DearDatabase\Models\SaleFulfilmentShipLine::class,
         'sale_invoice_line' => \Bonlineza\DearDatabase\Models\SaleInvoiceLine::class,
         'sale_invoice_additional_charge' => \Bonlineza\DearDatabase\Models\SaleInvoiceAdditionalCharge::class,
+        'sale_restock_line' => \Bonlineza\DearDatabase\Models\SaleRestockLine::class,
     ]
 ];
