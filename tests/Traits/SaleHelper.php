@@ -593,11 +593,20 @@ trait SaleHelper
 
     private function assertSaleInventoryMovementLines($dear_sale, $db_sale): void
     {
+        $date_fields = array_filter(InventoryMovementLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+
         $sale_inventory_movement_line_guids = array_column($dear_sale['InventoryMovements'], 'TaskID');
         foreach ($sale_inventory_movement_line_guids as $key => $sale_inventory_movement_line_guid) {
             $db_sale_inventory_movement_line = $db_sale->inventoryMovementLines()->where('external_guid', $sale_inventory_movement_line_guid)->first();
             $dear_sale_inventory_movement_line = $dear_sale['InventoryMovements'][$key];
             foreach (InventoryMovementLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_sale_inventory_movement_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_sale_inventory_movement_line[$dear_key])->format('Y-m-d H:i:s');
+                    $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_sale_inventory_movement_line->$db_key));
+                    continue;
+                }
                 $this->assertEquals($dear_sale_inventory_movement_line[$dear_key], $db_sale_inventory_movement_line->$db_key);
             }
         }
