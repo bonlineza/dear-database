@@ -13,6 +13,17 @@ class PurchaseManualJournalLine extends Model
 
     protected $guarded = [];
 
+    protected $dates = [
+        'date',
+    ];
+
+    public static function getDearFieldTypes(): array
+    {
+        return [
+            "Date" => 'date',
+        ];
+    }
+
     public static function getDearMapping(): array
     {
         return [
