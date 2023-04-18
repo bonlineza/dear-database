@@ -19,6 +19,7 @@ class Sale extends Model
     protected $dates = [
         'sale_order_date',
         'last_modified_on',
+        'ship_by'
     ];
 
     public static function getDearFieldTypes(): array
@@ -26,6 +27,7 @@ class Sale extends Model
         return [
             "SaleOrderDate" => 'date',
             "LastModifiedOn" => 'date',
+            "ShipBy" => 'date',
         ];
     }
 
