@@ -16,6 +16,17 @@ class PurchaseCreditNote extends Model
 
     protected $guarded = [];
 
+    protected $dates = [
+        'credit_note_date',
+    ];
+
+    public static function getDearFieldTypes(): array
+    {
+        return [
+            "CreditNoteDate" => 'date',
+        ];
+    }
+
     public static function getDearMapping(): array
     {
         return [
