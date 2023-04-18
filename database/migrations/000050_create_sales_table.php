@@ -54,8 +54,8 @@ return new class extends Migration
             $table->boolean('service_only')->nullable();
             $table->uuid('address_id')->nullable();
             $table->uuid('sale_shipping_address_id')->nullable();
-            $table->integer('sale_quote_id')->nullable();
-            $table->integer('sale_order_id')->nullable();
+            $table->uuid('sale_quote_id')->nullable();
+            $table->uuid('sale_order_id')->nullable();
             $table->uuid('sale_manual_journal_id')->nullable();
             $table->uuid('additional_attribute_id')->nullable();
             $table->timestamps();
