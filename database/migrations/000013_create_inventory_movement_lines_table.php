@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('external_guid');
             $table->uuid('product_guid');
             $table->dateTime('date');
-            $table->decimal('cogs');
+            $table->decimal('cogs', 12, 4);
             $table->timestamps();
         });
     }
