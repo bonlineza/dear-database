@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('sale_sale_fulfilment', function (Blueprint $table) {
             $table->uuid('sale_fulfilment_id');
             $table->uuid('sale_id');
-            $table->foreign('sale_fulfilment_id')->references('id')->on('sale_fulfilments');
-            $table->foreign('sale_id')->references('id')->on('sales');
         });
     }
 

@@ -37,31 +37,14 @@ return new class extends Migration
             $table->uuid('related_drop_ship_sale_task')->nullable();
             $table->decimal('currency_rate');
             $table->dateTime('last_updated_date');
-
             $table->uuid('address_id')->nullable();
-            $table->foreign('address_id')->references('id')->on('addresses');
-
             $table->uuid('purchase_shipping_address_id')->nullable();
-            $table->foreign('purchase_shipping_address_id')->references('id')->on('purchase_shipping_addresses');
-
             $table->uuid('purchase_order_id')->nullable();
-            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders');
-
             $table->uuid('purchase_stock_id')->nullable();
-            $table->foreign('purchase_stock_id')->references('id')->on('purchase_stocks');
-
             $table->uuid('purchase_invoice_id')->nullable();
-            $table->foreign('purchase_invoice_id')->references('id')->on('purchase_invoices');
-
             $table->uuid('purchase_credit_note_id')->nullable();
-            $table->foreign('purchase_credit_note_id')->references('id')->on('purchase_credit_notes');
-
             $table->uuid('purchase_manual_journal_id')->nullable();
-            $table->foreign('purchase_manual_journal_id')->references('id')->on('purchase_manual_journals');
-
             $table->uuid('additional_attribute_id')->nullable();
-            $table->foreign('additional_attribute_id')->references('id')->on('additional_attributes');
-
             $table->timestamps();
         });
     }

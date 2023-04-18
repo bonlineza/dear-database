@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('sale_sale_invoice', function (Blueprint $table) {
             $table->uuid('sale_invoice_id');
             $table->uuid('sale_id');
-            $table->foreign('sale_invoice_id')->references('id')->on('sale_invoices');
-            $table->foreign('sale_id')->references('id')->on('sales');
         });
     }
 

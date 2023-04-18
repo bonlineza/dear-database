@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('attachment_line_sale', function (Blueprint $table) {
             $table->uuid('attachment_line_id');
             $table->uuid('sale_id');
-            $table->foreign('attachment_line_id')->references('id')->on('attachment_lines');
-            $table->foreign('sale_id')->references('id')->on('sales');
         });
     }
 

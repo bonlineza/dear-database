@@ -52,25 +52,12 @@ return new class extends Migration
             $table->text('source_channel')->nullable();
             $table->text('external_id')->nullable();
             $table->boolean('service_only')->nullable();
-
             $table->uuid('address_id')->nullable();
-            $table->foreign('address_id')->references('id')->on('addresses');
-
             $table->uuid('sale_shipping_address_id')->nullable();
-            $table->foreign('sale_shipping_address_id')->references('id')->on('sale_shipping_addresses');
-
             $table->integer('sale_quote_id')->nullable();
-            $table->foreign('sale_quote_id')->references('id')->on('sale_quotes');
-
             $table->integer('sale_order_id')->nullable();
-            $table->foreign('sale_order_id')->references('id')->on('sale_orders');
-
             $table->uuid('sale_manual_journal_id')->nullable();
-            $table->foreign('sale_manual_journal_id')->references('id')->on('sale_manual_journals');
-
             $table->uuid('additional_attribute_id')->nullable();
-            $table->foreign('additional_attribute_id')->references('id')->on('additional_attributes');
-
             $table->timestamps();
         });
     }

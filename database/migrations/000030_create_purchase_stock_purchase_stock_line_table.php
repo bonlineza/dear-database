@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('purchase_stock_purchase_stock_line', function (Blueprint $table) {
             $table->uuid('purchase_stock_line_id');
             $table->uuid('purchase_stock_id');
-            $table->foreign('purchase_stock_line_id')->references('id')->on('purchase_stock_lines');
-            $table->foreign('purchase_stock_id')->references('id')->on('purchase_stocks');
         });
     }
 
