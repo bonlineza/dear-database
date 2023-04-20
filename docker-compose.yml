@@ -1,0 +1,25 @@
+version: '3'
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: docker/app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ${HOME}/.composer:/composer
+    environment:
+      - DB_HOST=database
+      - TZ=GMT-2
+      - COMPOSER_HOME=/composer
+
+  database:
+    image: postgres:11.3
+    environment:
+      - POSTGRES_PASSWORD=pass123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - PGDATA=/var/lib/postgresql/data
+      - TZ=GMT-2
+      - PGTZ=GMT-2
