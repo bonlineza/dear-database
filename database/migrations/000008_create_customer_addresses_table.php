@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('customer_addresses', function (Blueprint $table) {
             $table->uuid('customer_id');
             $table->uuid('contact_address_id');
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('contact_address_id')->references('id')->on('contact_addresses');
         });
     }
 

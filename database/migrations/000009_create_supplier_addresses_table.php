@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('supplier_addresses', function (Blueprint $table) {
             $table->uuid('supplier_id');
             $table->uuid('contact_address_id');
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
-            $table->foreign('contact_address_id')->references('id')->on('contact_addresses');
         });
     }
 

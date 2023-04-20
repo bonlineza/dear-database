@@ -24,11 +24,8 @@ return new class extends Migration
             $table->text('comment')->nullable();
             $table->boolean('default')->default(0);
             $table->boolean('include_in_email')->default(0);
-
             // custom non dear field to connect contacts to users
             $table->uuid('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-
             $table->timestamps();
         });
     }

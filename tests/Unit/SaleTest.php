@@ -40,11 +40,29 @@ class SaleTest extends TestCase
         // Sale Quote
         $this->assertSaleQuote($dear_sale, $sale);
 
+        // Sale Pre Payment Lines
+        $this->assertSalePrePaymentLines($dear_sale, $sale);
+
+        // Sale Quote Lines
+        $this->assertSaleQuoteLines($dear_sale, $sale);
+
+        // Sale Quote Additional Charges
+        $this->assertSaleQuoteAdditionalCharges($dear_sale, $sale);
+
         // Sale Order
         $this->assertSaleOrder($dear_sale, $sale);
 
+        // Sale Order Lines
+        $this->assertSaleOrderLines($dear_sale, $sale);
+
+        // Sale Order Additional Charges
+        $this->assertSaleOrderAdditionalCharges($dear_sale, $sale);
+
         // Sale Manual Journal
         $this->assertSaleManualJournal($dear_sale, $sale);
+
+        // Sale Manual Journal Lines
+        $this->assertSaleManualJournalLines($dear_sale, $sale);
 
         // Sale Additional Attribute
         $this->assertSaleAdditionalAttribute($dear_sale, $sale);
@@ -52,11 +70,50 @@ class SaleTest extends TestCase
         // Sale Fulfilments
         $this->assertSaleFulfilments($dear_sale, $sale);
 
+        // Sale Fulfilment Pick
+        $this->assertSaleFulfilmentPick($dear_sale, $sale);
+
+        // Sale Fulfilment Pick Lines
+        $this->assertSaleFulfilmentPickLines($dear_sale, $sale);
+
+        // Sale Fulfilment Pack
+        $this->assertSaleFulfilmentPack($dear_sale, $sale);
+
+        // Sale Fulfilment Pack Lines
+        $this->assertSaleFulfilmentPackLines($dear_sale, $sale);
+
+        // Sale Fulfilment Ships
+        $this->assertSaleFulfilmentShip($dear_sale, $sale);
+
+        // Sale Fulfilment Ship Lines
+        $this->assertSaleFulfilmentShipLines($dear_sale, $sale);
+
         // Sale Invoices
         $this->assertSaleInvoices($dear_sale, $sale);
 
+        // Sale Invoice Lines
+        $this->assertSaleInvoiceLines($dear_sale, $sale);
+
+        // Sale Invoice Additional Charges
+        $this->assertSaleInvoiceAdditionalCharges($dear_sale, $sale);
+
+        // Sale Invoice Payment Lines
+        $this->assertSaleInvoicePaymentLines($dear_sale, $sale);
+
         // Sale Credit Notes
         $this->assertSaleCreditNotes($dear_sale, $sale);
+
+        // Sale Credit Note Invoice Lines
+        $this->assertSaleCreditNoteInvoiceLines($dear_sale, $sale);
+
+        // Sale Credit Note Additional Charges
+        $this->assertSaleCreditNoteInvoiceAdditionalCharges($dear_sale, $sale);
+
+        // Sale Credit Note Payment Lines
+        $this->assertSaleCreditNotePaymentLines($dear_sale, $sale);
+
+        // Sale Credit Note Restock(Pick) Lines
+        $this->assertSaleCreditNoteRestockLines($dear_sale, $sale);
 
         // Sale Attachment Lines
         $this->assertSaleAttachmentLines($dear_sale, $sale);
@@ -94,11 +151,29 @@ class SaleTest extends TestCase
         // Sale Quote
         $this->assertSaleQuote($dear_sale, $sale);
 
+        // Sale Pre Payment Lines
+        $this->assertSalePrePaymentLines($dear_sale, $sale);
+
+        // Sale Quote Lines
+        $this->assertSaleQuoteLines($dear_sale, $sale);
+
+        // Sale Quote Additional Charges
+        $this->assertSaleQuoteAdditionalCharges($dear_sale, $sale);
+
         // Sale Order
         $this->assertSaleOrder($dear_sale, $sale);
 
+        // Sale Order Lines
+        $this->assertSaleOrderLines($dear_sale, $sale);
+
+        // Sale Order Additional Charges
+        $this->assertSaleOrderAdditionalCharges($dear_sale, $sale);
+
         // Sale Manual Journal
         $this->assertSaleManualJournal($dear_sale, $sale);
+
+        // Sale Manual Journal Lines
+        $this->assertSaleManualJournalLines($dear_sale, $sale);
 
         // Sale Additional Attribute
         $this->assertSaleAdditionalAttribute($dear_sale, $sale);
@@ -106,11 +181,50 @@ class SaleTest extends TestCase
         // Sale Fulfilments
         $this->assertSaleFulfilments($dear_sale, $sale);
 
+        // Sale Fulfilment Pick
+        $this->assertSaleFulfilmentPick($dear_sale, $sale);
+
+        // Sale Fulfilment Pick Lines
+        $this->assertSaleFulfilmentPickLines($dear_sale, $sale);
+
+        // Sale Fulfilment Pack
+        $this->assertSaleFulfilmentPack($dear_sale, $sale);
+
+        // Sale Fulfilment Pack Lines
+        $this->assertSaleFulfilmentPackLines($dear_sale, $sale);
+
+        // Sale Fulfilment Ships
+        $this->assertSaleFulfilmentShip($dear_sale, $sale);
+
+        // Sale Fulfilment Ship Lines
+        $this->assertSaleFulfilmentShipLines($dear_sale, $sale);
+
         // Sale Invoices
         $this->assertSaleInvoices($dear_sale, $sale);
 
+        // Sale Invoice Lines
+        $this->assertSaleInvoiceLines($dear_sale, $sale);
+
+        // Sale Invoice Additional Charges
+        $this->assertSaleInvoiceAdditionalCharges($dear_sale, $sale);
+
+        // Sale Invoice Payment Lines
+        $this->assertSaleInvoicePaymentLines($dear_sale, $sale);
+
         // Sale Credit Notes
         $this->assertSaleCreditNotes($dear_sale, $sale);
+
+        // Sale Credit Note Invoice Lines
+        $this->assertSaleCreditNoteInvoiceLines($dear_sale, $sale);
+
+        // Sale Credit Note Additional Charges
+        $this->assertSaleCreditNoteInvoiceAdditionalCharges($dear_sale, $sale);
+
+        // Sale Credit Note Payment Lines
+        $this->assertSaleCreditNotePaymentLines($dear_sale, $sale);
+
+        // Sale Credit Note Restock(Pick) Lines
+        $this->assertSaleCreditNoteRestockLines($dear_sale, $sale);
 
         // Sale Attachment Lines
         $this->assertSaleAttachmentLines($dear_sale, $sale);

@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('inventory_movement_line_sale', function (Blueprint $table) {
             $table->uuid('inventory_movement_line_id');
             $table->uuid('sale_id');
-            $table->foreign('inventory_movement_line_id')->references('id')->on('inventory_movement_lines');
-            $table->foreign('sale_id')->references('id')->on('sales');
         });
     }
 

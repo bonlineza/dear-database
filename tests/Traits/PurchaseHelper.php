@@ -164,9 +164,17 @@ trait PurchaseHelper
 
     private function assertPurchaseInvoice($dear_purchase, $db_purchase): void
     {
+        $date_fields = array_filter(PurchaseInvoice::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
         $db_invoice = $db_purchase->purchaseInvoice;
         $dear_invoice = $dear_purchase['Invoice'];
         foreach (PurchaseInvoice::getDearMapping() as $dear_key => $db_key) {
+            if (!is_null($dear_invoice[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                $formatted_date = Carbon::parse($dear_invoice[$dear_key])->format('Y-m-d H:i:s');
+                $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_invoice->$db_key));
+                continue;
+            }
             $this->assertEquals($dear_invoice[$dear_key], $db_invoice->$db_key);
         }
     }
@@ -226,9 +234,17 @@ trait PurchaseHelper
 
     private function assertPurchaseCreditNote($dear_purchase, $db_purchase): void
     {
+        $date_fields = array_filter(PurchaseCreditNote::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
         $db_credit_note = $db_purchase->purchaseCreditNote;
         $dear_credit_note = $dear_purchase['CreditNote'];
         foreach (PurchaseCreditNote::getDearMapping() as $dear_key => $db_key) {
+            if (!is_null($dear_credit_note[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                $formatted_date = Carbon::parse($dear_credit_note[$dear_key])->format('Y-m-d H:i:s');
+                $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_credit_note->$db_key));
+                continue;
+            }
             $this->assertEquals($dear_credit_note[$dear_key], $db_credit_note->$db_key);
         }
     }
@@ -288,11 +304,19 @@ trait PurchaseHelper
 
     private function assertPurchaseCreditNoteUnstockLines($dear_purchase, $db_purchase): void
     {
+        $date_fields = array_filter(PurchaseUnstockLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
         $unstock_line_guids = array_column($dear_purchase['CreditNote']['Unstock'], 'CardID');
         foreach ($unstock_line_guids as $key => $unstock_line_guid) {
             $db_unstock_line = $db_purchase->purchaseCreditNote->purchaseUnstockLines()->where('external_guid', $unstock_line_guid)->first();
             $dear_unstock_line = $dear_purchase['CreditNote']['Unstock'][$key];
             foreach (PurchaseUnstockLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_unstock_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_unstock_line[$dear_key])->format('Y-m-d H:i:s');
+                    $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_unstock_line->$db_key));
+                    continue;
+                }
                 $this->assertEquals($dear_unstock_line[$dear_key], $db_unstock_line->$db_key);
             }
         }
@@ -309,9 +333,17 @@ trait PurchaseHelper
 
     private function assertPurchaseManualJournalLines($dear_purchase, $db_purchase): void
     {
+        $date_fields = array_filter(PurchaseManualJournalLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+
         $mapped_dear_manual_journal_lines = [];
         foreach ($dear_purchase['ManualJournals']['Lines'] as $key => $dear_manual_journal_line) {
             foreach (PurchaseManualJournalLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_manual_journal_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $mapped_dear_manual_journal_lines[$key][$db_key] = Carbon::parse($dear_manual_journal_line[$dear_key])->format('Y-m-d H:i:s');
+                    continue;
+                }
                 $mapped_dear_manual_journal_lines[$key][$db_key] = $dear_manual_journal_line[$dear_key];
             }
         }
@@ -353,12 +385,21 @@ trait PurchaseHelper
 
     private function assertPurchaseInventoryMovementLines($dear_purchase, $db_purchase): void
     {
+        $date_fields = array_filter(InventoryMovementLine::getDearFieldTypes(), function ($value) {
+            return $value === 'date';
+        });
+
         $this->assertEquals(count($dear_purchase['InventoryMovements']), $db_purchase->inventoryMovementLines->count());
         $inventory_movement_guids = array_column($dear_purchase['InventoryMovements'], 'TaskID');
         foreach ($inventory_movement_guids as $key => $inventory_movement_guid) {
             $db_inventory_movement_line = $db_purchase->inventoryMovementLines()->where('external_guid', $inventory_movement_guid)->first();
             $dear_inventory_movement_line = $dear_purchase['InventoryMovements'][$key];
             foreach (InventoryMovementLine::getDearMapping() as $dear_key => $db_key) {
+                if (!is_null($dear_inventory_movement_line[$dear_key]) && in_array($dear_key, array_keys($date_fields))) {
+                    $formatted_date = Carbon::parse($dear_inventory_movement_line[$dear_key])->format('Y-m-d H:i:s');
+                    $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_inventory_movement_line->$db_key));
+                    continue;
+                }
                 $this->assertEquals($dear_inventory_movement_line[$dear_key], $db_inventory_movement_line->$db_key);
             }
         }

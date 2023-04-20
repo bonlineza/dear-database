@@ -99,7 +99,7 @@ class PurchaseTest extends TestCase
     }
 
     /** @test */
-    function customer_update_from_dear()
+    function purchase_update_from_dear()
     {
         $dear_purchase = json_decode(
             file_get_contents(

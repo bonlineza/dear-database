@@ -16,6 +16,19 @@ class PurchaseInvoice extends Model
 
     protected $guarded = [];
 
+    protected $dates = [
+        'invoice_date',
+        'invoice_due_date',
+    ];
+
+    public static function getDearFieldTypes(): array
+    {
+        return [
+            "InvoiceDate" => 'date',
+            "InvoiceDueDate" => 'date',
+        ];
+    }
+
     public static function getDearMapping(): array
     {
         return [

@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('sale_sale_credit_note', function (Blueprint $table) {
             $table->uuid('sale_credit_note_id');
             $table->uuid('sale_id');
-            $table->foreign('sale_credit_note_id')->references('id')->on('sale_credit_notes');
-            $table->foreign('sale_id')->references('id')->on('sales');
         });
     }
 

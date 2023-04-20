@@ -13,6 +13,19 @@ class PurchaseUnstockLine extends Model
 
     protected $guarded = [];
 
+    protected $dates = [
+        'date',
+        'expiry_date',
+    ];
+
+    public static function getDearFieldTypes(): array
+    {
+        return [
+            "Date" => "date",
+            "ExpiryDate" => 'date',
+        ];
+    }
+
     public static function getDearMapping(): array
     {
         return [

@@ -103,7 +103,7 @@
         "Amount": "4000.00",
         "DatePaid": "2023-02-15T12:25:25.033Z",
         "Account": "206",
-        "CurrencyRate": "1.00",
+        "CurrencyRate": "1.0000",
         "DateCreated": "2023-02-15T12:25:25.033Z"
       },
       {
@@ -112,7 +112,7 @@
         "Amount": "4000.00",
         "DatePaid": "2023-02-15T13:25:25.033Z",
         "Account": "206",
-        "CurrencyRate": "1.00",
+        "CurrencyRate": "1.0000",
         "DateCreated": "2023-02-15T13:25:25.033Z"
       }
     ],
@@ -241,7 +241,7 @@
     "Status": "AUTHORISED",
     "Lines": [
       {
-        "ProductID": "c08b3876-89cc-46c4-af52-b77f058f444",
+        "ProductID": "c08b3876-89cc-46c4-af52-b77f058fdf82",
         "SKU": "Bread 1",
         "Name": "Baked Bread 1",
         "Quantity": 2,
@@ -302,7 +302,7 @@
         "DateCreated": "2017-12-08T04:05:42.3030398Z"
       },
       {
-        "ID": "22ef556h-12fb-1564-5c4c-34fe5539ec10",
+        "ID": "3b1b360e-12fb-1564-5c4c-34fe5539ec11",
         "Reference": "Refund 2",
         "Amount": 10,
         "DatePaid": "2019-12-28T00:00:00",
@@ -324,7 +324,7 @@
         "ExpiryDate": "2017-11-28T00:00:00"
       },
       {
-        "CardID": "ert564k9-5ff1-4970-9471-1e6d626065c3",
+        "CardID": "3bc7212b-5ff1-4970-9471-1e6d626065c4",
         "Date": "2019-12-08T00:00:00",
         "Quantity": 1,
         "ProductID": "c08b3876-89cc-46c4-af52-b77f058fdf81",
