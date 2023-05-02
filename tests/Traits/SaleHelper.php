@@ -135,6 +135,10 @@ trait SaleHelper
         $db_order = $db_sale->saleOrder;
         $dear_order = $dear_sale['Order'];
         foreach (SaleOrder::getDearMapping() as $dear_key => $db_key) {
+            if ($db_key === 'status') {
+                $this->assertEquals($dear_order[$dear_key], $db_order->$db_key->value);
+                continue;
+            }
             $this->assertEquals($dear_order[$dear_key], $db_order->$db_key);
         }
     }
