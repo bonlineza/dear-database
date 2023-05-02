@@ -244,6 +244,10 @@ trait SaleHelper
             $db_sale_fulfilment_pick = $db_sale_fulfilment->saleFulfilmentPick;
             $dear_sale_fulfillment_pick = $dear_sale_fulfillment['Pick'];
             foreach (SaleFulfilmentPick::getDearMapping() as $dear_key => $db_key) {
+                if ($db_key === 'status') {
+                    $this->assertEquals($dear_sale_fulfillment_pick[$dear_key], $db_sale_fulfilment_pick->$db_key->value);
+                    continue;
+                }
                 $this->assertEquals($dear_sale_fulfillment_pick[$dear_key], $db_sale_fulfilment_pick->$db_key);
             }
         }
