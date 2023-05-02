@@ -3,6 +3,7 @@
 namespace Bonlineza\DearDatabase\Models;
 
 use Bonlineza\DearDatabase\Database\Factories\SaleInvoiceFactory;
+use Bonlineza\DearDatabase\Enums\SaleInvoiceStatus;
 use Bonlineza\DearDatabase\Traits\DearModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +15,10 @@ class SaleInvoice extends Model
     use HasFactory, DearModel, HasUuids;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'status' => SaleInvoiceStatus::class,
+    ];
 
     protected $dates = [
         'invoice_date',
