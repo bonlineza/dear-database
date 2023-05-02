@@ -71,6 +71,10 @@ trait SaleHelper
         $db_quote = $db_sale->saleQuote;
         $dear_quote = $dear_sale['Quote'];
         foreach (SaleQuote::getDearMapping() as $dear_key => $db_key) {
+            if ($db_key === 'status') {
+                $this->assertEquals($dear_quote[$dear_key], $db_quote->$db_key->value);
+                continue;
+            }
             $this->assertEquals($dear_quote[$dear_key], $db_quote->$db_key);
         }
     }
