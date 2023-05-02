@@ -49,5 +49,6 @@ return [
         'sale_invoice_additional_charge' => \Bonlineza\DearDatabase\Models\SaleInvoiceAdditionalCharge::class,
         'sale_restock_line' => \Bonlineza\DearDatabase\Models\SaleRestockLine::class,
         'product_movement' => \Bonlineza\DearDatabase\Models\ProductMovement::class,
+        'product' => \Bonlineza\DearDatabase\Models\Product::class,
     ]
 ];
