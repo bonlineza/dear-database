@@ -153,7 +153,7 @@ class Sale extends Model
 
     public function saleCustomer(): BelongsTo
     {
-        return $this->belongsTo(config('dear-database.models.customer'), 'external_guid', 'customer_guid');
+        return $this->belongsTo(config('dear-database.models.customer'), 'customer_guid', 'external_guid');
     }
 
     /**

@@ -7,6 +7,7 @@ use Bonlineza\DearDatabase\Traits\DearModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SaleQuoteLine extends Model
 {
@@ -34,5 +35,10 @@ class SaleQuoteLine extends Model
     protected static function newFactory()
     {
         return SaleQuoteLineFactory::new();
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(config('dear-database.models.product'), 'product_guid', 'product_guid');
     }
 }
