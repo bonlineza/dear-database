@@ -38,19 +38,19 @@ class PurchaseOrder extends Model
             config('dear-database.models.purchase_order_line') => [
                 'model' => config('dear-database.models.purchase_order_line'),
                 'table' => 'purchase_order_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Lines',
             ],
             config('dear-database.models.purchase_additional_charge') => [
                 'model' => config('dear-database.models.purchase_additional_charge'),
                 'table' => 'purchase_additional_charges',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'AdditionalCharges',
             ],
             config('dear-database.models.purchase_payment_line') => [
                 'model' => config('dear-database.models.purchase_payment_line'),
                 'table' => 'purchase_payment_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Prepayments',
             ],
         ];

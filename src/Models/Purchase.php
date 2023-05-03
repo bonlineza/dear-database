@@ -112,13 +112,13 @@ class Purchase extends Model
             config('dear-database.models.attachment_line') => [
                 'model' => config('dear-database.models.attachment_line'),
                 'table' => 'attachment_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Attachments',
             ],
             config('dear-database.models.inventory_movement_line') => [
                 'model' => config('dear-database.models.inventory_movement_line'),
                 'table' => 'inventory_movement_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'InventoryMovements',
             ],
         ];

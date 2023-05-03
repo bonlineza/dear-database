@@ -116,31 +116,31 @@ class Sale extends Model
             config('dear-database.models.sale_fulfilment') => [
                 'model' => config('dear-database.models.sale_fulfilment'),
                 'table' => 'sale_fulfilments',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Fulfilments',
             ],
             config('dear-database.models.sale_invoice') => [
                 'model' => config('dear-database.models.sale_invoice'),
                 'table' => 'sale_invoices',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Invoices',
             ],
             config('dear-database.models.sale_credit_note') => [
                 'model' => config('dear-database.models.sale_credit_note'),
                 'table' => 'sale_credit_notes',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'CreditNotes',
             ],
             config('dear-database.models.attachment_line') => [
                 'model' => config('dear-database.models.attachment_line'),
                 'table' => 'attachment_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Attachments',
             ],
             config('dear-database.models.inventory_movement_line') => [
                 'model' => config('dear-database.models.inventory_movement_line'),
                 'table' => 'inventory_movement_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'InventoryMovements',
             ],
         ];

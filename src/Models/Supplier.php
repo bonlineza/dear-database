@@ -53,13 +53,13 @@ class Supplier extends DearClient
             config('dear-database.models.contact_address') => [
                 'model' => config('dear-database.models.contact_address'),
                 'table' => 'contact_addresses',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Addresses'
             ],
             config('dear-database.models.contact') => [
                 'model' => config('dear-database.models.contact'),
                 'table' => 'contacts',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Contacts'
             ]
         ];

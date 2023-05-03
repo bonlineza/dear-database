@@ -28,7 +28,7 @@ class SaleFulfilmentPack extends Model
             config('dear-database.models.sale_fulfilment_pack_line') => [
                 'model' => config('dear-database.models.sale_fulfilment_pack_line'),
                 'table' => 'sale_fulfilment_pack_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Lines',
             ],
         ];

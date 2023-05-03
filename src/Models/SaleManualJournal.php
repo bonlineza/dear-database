@@ -29,7 +29,7 @@ class SaleManualJournal extends Model
             config('dear-database.models.sale_manual_journal_line') => [
                 'model' => config('dear-database.models.sale_manual_journal_line'),
                 'table' => 'sale_manual_journal_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Lines',
             ],
         ];

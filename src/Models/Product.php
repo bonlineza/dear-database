@@ -109,13 +109,13 @@ class Product extends Model
             config('dear-database.models.product_movement') => [
                 'model' => config('dear-database.models.product_movement'),
                 'table' => 'product_movements',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Movements',
             ],
             config('dear-database.models.attachment_line') => [
                 'model' => config('dear-database.models.attachment_line'),
                 'table' => 'attachment_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Attachments',
             ],
         ];

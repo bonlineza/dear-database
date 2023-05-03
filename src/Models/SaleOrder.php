@@ -39,13 +39,13 @@ class SaleOrder extends Model
             config('dear-database.models.sale_order_line') => [
                 'model' => config('dear-database.models.sale_order_line'),
                 'table' => 'sale_order_lines',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'Lines',
             ],
             config('dear-database.models.sale_additional_charge') => [
                 'model' => config('dear-database.models.sale_additional_charge'),
                 'table' => 'sale_additional_charges',
-                'relationship_type' => DearModel::$MANY_TO_MANY,
+                'relationship_type' => self::$MANY_TO_MANY,
                 'dear_key' => 'AdditionalCharges',
             ],
         ];
