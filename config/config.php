@@ -52,5 +52,6 @@ return [
         'product' => \Bonlineza\DearDatabase\Models\Product::class,
         'location' => \Bonlineza\DearDatabase\Models\Location::class,
         'bin' => \Bonlineza\DearDatabase\Models\Bin::class,
+        'product_availability' => \Bonlineza\DearDatabase\Models\ProductAvailability::class,
     ]
 ];
