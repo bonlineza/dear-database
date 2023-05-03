@@ -2,6 +2,7 @@
 
 namespace Bonlineza\DearDatabase\Database\Factories;
 
+use Bonlineza\DearDatabase\Enums\SaleQuoteStatus;
 use Bonlineza\DearDatabase\Models\SaleAdditionalCharge;
 use Bonlineza\DearDatabase\Models\SalePaymentLine;
 use Bonlineza\DearDatabase\Models\SaleQuote;
@@ -21,7 +22,7 @@ class SaleQuoteFactory extends Factory
     public function definition()
     {
         return [
-            'status' => 'NOT AVAILABLE',
+            'status' => SaleQuoteStatus::NotAvailable,
             'memo' => $this->faker->text,
             'total_before_tax' => 1,
             'tax' => 1,

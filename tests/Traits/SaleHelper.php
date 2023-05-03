@@ -71,6 +71,10 @@ trait SaleHelper
         $db_quote = $db_sale->saleQuote;
         $dear_quote = $dear_sale['Quote'];
         foreach (SaleQuote::getDearMapping() as $dear_key => $db_key) {
+            if ($db_key === 'status') {
+                $this->assertEquals($dear_quote[$dear_key], $db_quote->$db_key->value);
+                continue;
+            }
             $this->assertEquals($dear_quote[$dear_key], $db_quote->$db_key);
         }
     }
@@ -131,6 +135,10 @@ trait SaleHelper
         $db_order = $db_sale->saleOrder;
         $dear_order = $dear_sale['Order'];
         foreach (SaleOrder::getDearMapping() as $dear_key => $db_key) {
+            if ($db_key === 'status') {
+                $this->assertEquals($dear_order[$dear_key], $db_order->$db_key->value);
+                continue;
+            }
             $this->assertEquals($dear_order[$dear_key], $db_order->$db_key);
         }
     }
@@ -236,6 +244,10 @@ trait SaleHelper
             $db_sale_fulfilment_pick = $db_sale_fulfilment->saleFulfilmentPick;
             $dear_sale_fulfillment_pick = $dear_sale_fulfillment['Pick'];
             foreach (SaleFulfilmentPick::getDearMapping() as $dear_key => $db_key) {
+                if ($db_key === 'status') {
+                    $this->assertEquals($dear_sale_fulfillment_pick[$dear_key], $db_sale_fulfilment_pick->$db_key->value);
+                    continue;
+                }
                 $this->assertEquals($dear_sale_fulfillment_pick[$dear_key], $db_sale_fulfilment_pick->$db_key);
             }
         }
@@ -380,6 +392,10 @@ trait SaleHelper
                 if (in_array($dear_key, array_keys($date_fields))) {
                     $formatted_date = Carbon::parse($dear_sale_invoice[$dear_key])->format('Y-m-d H:i:s');
                     $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_sale_invoice->$db_key));
+                    continue;
+                }
+                if ($db_key === 'status') {
+                    $this->assertEquals($dear_sale_invoice[$dear_key], $db_sale_invoice->$db_key->value);
                     continue;
                 }
                 $this->assertEquals($dear_sale_invoice[$dear_key], $db_sale_invoice->$db_key);

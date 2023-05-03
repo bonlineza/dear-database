@@ -3,6 +3,7 @@
 namespace Bonlineza\DearDatabase\Models;
 
 use Bonlineza\DearDatabase\Database\Factories\SaleOrderFactory;
+use Bonlineza\DearDatabase\Enums\SaleOrderStatus;
 use Bonlineza\DearDatabase\Traits\DearModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,10 @@ class SaleOrder extends Model
     use HasFactory, DearModel, HasUuids;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'status' => SaleOrderStatus::class,
+    ];
 
     public static function getDearMapping(): array
     {

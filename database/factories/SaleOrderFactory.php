@@ -2,6 +2,7 @@
 
 namespace Bonlineza\DearDatabase\Database\Factories;
 
+use Bonlineza\DearDatabase\Enums\SaleOrderStatus;
 use Bonlineza\DearDatabase\Models\SaleAdditionalCharge;
 use Bonlineza\DearDatabase\Models\SaleOrder;
 use Bonlineza\DearDatabase\Models\SaleOrderLine;
@@ -21,7 +22,7 @@ class SaleOrderFactory extends Factory
     {
         return [
             'sale_order_number' => $this->faker->unique()->numerify('SO-#####'),
-            'status' => 'NOT AVAILABLE',
+            'status' => SaleOrderStatus::NotAvailable,
             'memo' => $this->faker->text,
             'total_before_tax' => 1,
             'tax' => 1,
