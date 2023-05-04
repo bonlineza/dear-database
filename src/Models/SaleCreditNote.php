@@ -3,6 +3,7 @@
 namespace Bonlineza\DearDatabase\Models;
 
 use Bonlineza\DearDatabase\Database\Factories\SaleCreditNoteFactory;
+use Bonlineza\DearDatabase\Enums\SaleCreditNoteStatus;
 use Bonlineza\DearDatabase\Traits\DearModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +15,10 @@ class SaleCreditNote extends Model
     use HasFactory, DearModel, HasUuids;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'status' => SaleCreditNoteStatus::class,
+    ];
 
     protected $dates = [
         'credit_note_date',

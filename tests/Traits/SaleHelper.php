@@ -491,6 +491,10 @@ trait SaleHelper
                     $this->assertTrue(Carbon::parse($formatted_date)->equalTo($db_sale_credit_note->$db_key));
                     continue;
                 }
+                if ($db_key === 'status') {
+                    $this->assertEquals($dear_sale_credit_note[$dear_key], $db_sale_credit_note->$db_key->value);
+                    continue;
+                }
                 $this->assertEquals($dear_sale_credit_note[$dear_key], $db_sale_credit_note->$db_key);
             }
         }
