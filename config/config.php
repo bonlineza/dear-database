@@ -50,5 +50,8 @@ return [
         'sale_restock_line' => \Bonlineza\DearDatabase\Models\SaleRestockLine::class,
         'product_movement' => \Bonlineza\DearDatabase\Models\ProductMovement::class,
         'product' => \Bonlineza\DearDatabase\Models\Product::class,
+        'location' => \Bonlineza\DearDatabase\Models\Location::class,
+        'bin' => \Bonlineza\DearDatabase\Models\Bin::class,
+        'product_availability' => \Bonlineza\DearDatabase\Models\ProductAvailability::class,
     ]
 ];
