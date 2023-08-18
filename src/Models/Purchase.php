@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Purchase extends Model
 {
@@ -129,9 +130,9 @@ class Purchase extends Model
         return PurchaseFactory::new();
     }
 
-    public function purchaseSupplier(): BelongsTo
+    public function purchaseSupplier(): hasOne
     {
-        return $this->belongsTo(config('dear-database.models.supplier'), 'external_guid', 'supplier_guid');
+        return $this->hasOne(config('dear-database.models.supplier'), 'external_guid', 'supplier_guid');
     }
 
     /**
