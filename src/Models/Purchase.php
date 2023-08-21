@@ -130,7 +130,7 @@ class Purchase extends Model
         return PurchaseFactory::new();
     }
 
-    public function purchaseSupplier(): hasOne
+    public function purchaseSupplier(): HasOne
     {
         return $this->hasOne(config('dear-database.models.supplier'), 'external_guid', 'supplier_guid');
     }
