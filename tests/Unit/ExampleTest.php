@@ -11,7 +11,7 @@ class ExampleTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->example = new Example();
+        $this->huh = new Example();
     }
 
     // Missing test documentation

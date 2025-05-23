@@ -8,7 +8,7 @@ class Example
 
     public function __construct()
     {
-        $this->data = [];
+        $this->data = '';
     }
 
     // Missing return type
