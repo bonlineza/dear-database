@@ -1,0 +1,22 @@
+path_filters:
+  - "!vendor/**"
+  - "!storage/**"
+  - "!bootstrap/cache/**"
+  - "!.env"
+  - "!public/storage/**"
+
+reviews:
+  profile: "chill"
+  high_level_summary: false
+  auto_review:
+    base_branches:
+      - "master"
+      - "main"
+    ignore_title_keywords:
+      - "WIP"
+    labels:
+      - "review"
+    drafts: false
+  tools:
+    phpstan:
+      enabled: true
